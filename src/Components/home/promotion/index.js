@@ -1,6 +1,6 @@
 import React from 'react';
-import PromotionAnimation from './Animation';
-import Enroll from './Enroll';
+import PromotionAnimation from './animation';
+import Enroll from './enroll';
 
 const Promotion = () => {
     return (

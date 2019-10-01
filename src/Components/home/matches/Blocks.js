@@ -10,7 +10,7 @@ class Blocks extends Component {
     state = {
         matches:[]
     }
-
+ 
     componentDidMount(){
         firebaseMatches.limitToLast(6).once('value').then((snapshot)=>{
             const matches = firebaseLooper(snapshot);

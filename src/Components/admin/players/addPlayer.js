@@ -1,15 +1,22 @@
+import React, { Component } from 'react';
+import AdminLayout from '../../../hoc/adminLayout';
 
-import React from 'react';
-import AdminLayout from '../../../Hoc/AdminLayout';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { createPlayer } from "../../actions/playerActions";
 //import { Row, Form, Col, Button } from 'react-bootstrap';
 
 //quedo funcionando post (insert) y select en players
 
-class AddPlayer extends React.Component {
+class AddPlayer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {value: ''};
+    this.state = {
+      name: '',
+      value: '',
+      errors: {}
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,13 +53,23 @@ class AddPlayer extends React.Component {
   }
 */
   handleChange(event) {
-    this.setState({value: event.target.value});
+    //this.setState({value: event.target.value});
+    this.setState({ [event.target.name]: event.target.value });
+
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    this.onFormSubmit(this.state);
     event.preventDefault();
+   // this.onFormSubmit(this.state);
+
+   const newPlayer = {
+    name: this.state.name,
+    value: this.state.value
+   };
+   alert('A name was submitted: ' + newPlayer);
+   console.log(newPlayer);
+   this.props.createPlayer(newPlayer, this.props.history);   
+ 
   }
 
 /*
@@ -89,27 +106,23 @@ class AddPlayer extends React.Component {
       })
     })
     */
-
-   onFormSubmit(data) {
+/*
+   onFormSubmit(e) {
    
-    fetch("http://localhost:8081/players/", {
-    method: 'POST',
-    headers: new Headers({
-               'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
-      }),
-      body: "name="+this.state.value+"&email=ff@ff.com" // <-- Post parameters
-    })
-    .then((response) => response.text())
-    .then((responseText) => {
-      alert(responseText);
-    })
-    .catch((error) => {
-      console.error(error);
-    });   
-  };  
+    e.preventDefault();
+    const newPlayer = {
+      playerName: this.state.projectName,
+      value: this.state.value
+    };
+    // lo llama en project actions
+    //this.props.createProject(newPlayer, this.props.history);
+      this.props.createPlayer(newPlayer, this.props.history);
 
+  }
+*/
 
   render() {
+    const { errors } = this.state;
 
     let pageTitle;
     if(this.state.id) {
@@ -126,22 +139,23 @@ class AddPlayer extends React.Component {
               <label>
                  Nombre           
                  <input
-                   type="text"
-                   className="form-control form-control-lg"
-                  placeholder="Name"
-                  name="name"                  
-                  value={this.state.value}
-                   onChange={this.handleChange}                           
+                    type="text"
+                    className="form-control form-control-lg"
+                    placeholder="Name"
+                    name="name"                  
+                    value={this.state.name}
+                    onChange={this.handleChange}                           
                  />                 
               </label> 
               <label>
-                 Email
+                 Valor
                  <input
-                   type="text"
-                   className="form-control form-control-lg"
-                   placeholder="Email"
-                   name="email"
-                   value={this.state.projectIdentifier}             
+                     type="text"
+                     className="form-control form-control-lg"
+                     placeholder="Valor"
+                     name="value"
+                     value={this.state.value}   
+                     onChange={this.handleChange}                                                         
                  /> 
                </label>            
                <div> <br /> </div>
@@ -158,4 +172,12 @@ class AddPlayer extends React.Component {
   }
 }
 
-export default AddPlayer;
+// export default AddPlayer;
+const mapStateToProps = state => ({
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { createPlayer }
+)(AddPlayer);

@@ -1,6 +1,6 @@
 import React from 'react';
-import Stripes from './Stripes';
-import Text from './Text';
+import Stripes from './stripes';
+import Text from './text';
 
 const Featured = () => {
     return (

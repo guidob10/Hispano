@@ -1,6 +1,6 @@
 import React from 'react';
 import Zoom from 'react-reveal/Zoom'
-import Jersey from '../../../Resources/images/jersey.jpg';
+import Jersey from '../../../resources/images/jersey.jpg';
 
 const PromotionAnimation = () => {
     return (
@@ -8,8 +8,8 @@ const PromotionAnimation = () => {
             <div className="left">
                 <Zoom>
                     <div>
-                        <span>Win a</span>
-                        <span>Jersey</span>
+                        <span>Ganate una </span>
+                        <span>Camiseta</span>
                     </div>
                 </Zoom>
             </div>

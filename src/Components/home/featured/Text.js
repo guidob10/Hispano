@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { easePolyOut } from 'd3-ease';
 import Animate from 'react-move/Animate';
 
-import FeaturedPlayer from '../../../Resources/images/featured_sil.png'
+import FeaturedPlayer from '../../../resources/images/featured_sil.png'
 
 class Text extends Component {
 

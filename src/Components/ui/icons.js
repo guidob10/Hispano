@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import mcitylogo from '../../Resources/images/logos/hispano_logo.png';
+import mcitylogo from '../../resources/images/logos/hispano_logo.png';
 
 export const CityLogo = (props) => {
 

@@ -1,19 +1,21 @@
 import React from 'react';
-import Layout from './Hoc/Layout';
+import Layout from './hoc/layout';
 import { Switch, Route }  from 'react-router-dom';
 
-import PrivateRoute from './Components/authRoutes/privateRoutes';
-import PublicRoute from './Components/authRoutes/publicRoutes';
+import PrivateRoute from './components/authRoutes/privateRoutes';
+import PublicRoute from './components/authRoutes/publicRoutes';
 
-import Home from './Components/home';
-import SignIn from './Components/signin';
+import Home from './components/home';
+import SignIn from './components/signin';
 
-import Dashboard from './Components/admin/Dashboard';
-import AdminMatches from './Components/admin/matches';
-import AdminPlayers from './Components/admin/players';
-import AddEditPlayers from './Components/admin/players/addEditPlayers';
-import AddPlayer from './Components/admin/players/addPlayer';
-import Hello from './Components/admin/players/hello';
+import Dashboard from './components/admin/Dashboard';
+import AdminMatches from './components/admin/matches';
+import AdminPlayers from './components/admin/players';
+import AddEditPlayers from './components/admin/players/addEditPlayers';
+import AddPlayer from './components/admin/players/addPlayer';
+import Hello from './components/admin/players/hello';
+import Login from './components/login';
+
 
 
 //             <PrivateRoute {...props} path="/dashboard" exact component={Dashboard}/>
@@ -25,13 +27,14 @@ const Routes = (props) => {
     <Layout>
         <Switch>
 
-            <PublicRoute {...props} restricted={false} path="/admin_matches" exact component={AdminMatches}/>
+            <PrivateRoute {...props} restricted={false} path="/admin_matches" exact component={AdminMatches}/>
             <PublicRoute {...props} restricted={false} path="/admin_players/add_players/:id" exact component={AddEditPlayers}/>
             <PublicRoute {...props} restricted={false} path="/admin_players" exact component={AdminPlayers}/> 
             <PublicRoute {...props} restricted={false} path="/admin_players/addplayer" exact component={AddPlayer}/>                 
             <PublicRoute {...props} restricted={false} path="/hello" exact component={Hello}/>                 
             <PublicRoute {...props} restricted={false} path="/dashboard" exact component={Dashboard}/>
-            <PublicRoute {...props} restricted={false} path="/sign_in" exact component={SignIn}/>
+            <PublicRoute {...props} restricted={false} path="/signin" exact component={SignIn}/>
+            <PublicRoute {...props} restricted={false} path="/login" component={Login} />            
             <PublicRoute {...props} restricted={false} path="/" exact component={Home}/>
         </Switch>
     </Layout>

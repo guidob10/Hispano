@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import AdminLayout from '../../../Hoc/AdminLayout';
+import AdminLayout from '../../../hoc/adminLayout';
 
 class Hello extends React.Component {
     

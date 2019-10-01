@@ -17,7 +17,7 @@ class Enroll extends Component {
                 config:{
                     name:'email_input',
                     type: 'email',
-                    placeholder: 'Enter your email'
+                    placeholder: 'Ingresa tu Email'
                 },
                 validation:{
                     required: true,
@@ -60,7 +60,7 @@ class Enroll extends Component {
         this.setState({
             formError:false,
             formdata: newFormdata,
-            formSuccess: type ? 'Congratulations' : 'Already on the database'
+            formSuccess: type ? 'Felicitaciones' : 'Ya estas inscripto'
         });
         this.successMessage();
     }
@@ -110,7 +110,7 @@ class Enroll extends Component {
                 <div className="enroll_wrapper">
                     <form onSubmit={ (event)=> this.submitForm(event)}>
                         <div className="enroll_title">
-                            Enter your email
+                            Ingresa tu Email
                         </div>
                         <div className="enroll_input">
                             <FormField
@@ -124,9 +124,9 @@ class Enroll extends Component {
                                 :null
                             }
                             <div className="success_label">{this.state.formSuccess}</div>
-                            <button onClick={(event)=> this.submitForm(event)}>Enroll</button>
+                            <button onClick={(event)=> this.submitForm(event)}>Sumate</button>
                             <div className="enroll_discl">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Recibi las novedades del club en tu correo. 
                             </div>
                         </div>
                     </form>

@@ -1,32 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ReactDOM from 'react-dom';
+import './resources/css/app.css';
 import store from "./store";
-import AddPlayer from "./components/Player/AddPlayer";
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './routes';
+import jwt_decode from "jwt-decode";
+import setJWTToken from "./securityUtils/setJWTToken";
+import { SET_CURRENT_USER } from "./components/actions/types";
+import { logout } from "./components/actions/securityActions";
+import SecuredRoute from "./securityUtils/secureRoute";
 import { Provider } from "react-redux";
-import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
-  return (
-    <Provider store={store}>
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-    </Provider>
-  );
+
+const App = () => {
+
+    const jwtToken = localStorage.jwtToken;
+ 
+    if (jwtToken) {
+        setJWTToken(jwtToken);
+        const decoded_jwtToken = jwt_decode(jwtToken);
+        store.dispatch({
+          type: SET_CURRENT_USER,
+          payload: decoded_jwtToken
+        });
+      
+        const currentTime = Date.now() / 1000;
+        if (decoded_jwtToken.exp < currentTime) {
+          store.dispatch(logout());
+          window.location.href = "/";
+        }
+    }
+
+    return (
+      <Provider store={store}>
+        <BrowserRouter>
+            <Routes/>
+        </BrowserRouter>
+      </Provider>
+ 
+    )
 }
+
+//ReactDOM.render(<App />, document.getElementById('root'));
 
 export default App;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AdminLayout from '../../../Hoc/AdminLayout';
+import AdminLayout from '../../../hoc/adminLayout';
 
 import FormField from '../../ui/formFields';
 import { validate } from '../../ui/misc';
