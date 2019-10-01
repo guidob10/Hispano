@@ -30,18 +30,18 @@ export const login = LoginRequest => async dispatch => {
     const { token } = res.data;
     // store the token in the localStorage
     localStorage.setItem("jwtToken", token);
+    console.log("llegue3b"+token);
     // set our token in header ***
     setJWTToken(token);
     // decode token on React
     const decoded = jwt_decode(token);
     // dispatch to our securityReducer
-
-    console.log("llegue3");
     dispatch({
       type: SET_CURRENT_USER,
       payload: decoded
     });
   } catch (err) {
+    console.log("llegue3");
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data

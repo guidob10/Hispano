@@ -13,9 +13,7 @@ class Login extends Component {
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
- //fbc
-    //this.handler = this.handler.bind(this);    
+    this.onSubmit = this.onSubmit.bind(this); 
   }
 
   componentWillReceiveProps(nextProps) {
@@ -36,46 +34,8 @@ class Login extends Component {
     };
     // alert('A name was submitted: ' + this.state.username ); esto muestra ok
     
-    //this.props.login(LoginRequest);
-/*
-    fetch("http://localhost:8081/players/", {
-    method: 'POST',
-    headers: new Headers({
-               'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
-      }),
-      body: "name="+this.state.value+"&email=ff@ff.com" // <-- Post parameters
-    })
-    .then((response) => response.text())
-    .then((responseText) => {
-      alert(responseText);
-    })
-    .catch((error) => {
-      console.error(error);
-    });  */
+    this.props.login(LoginRequest);
 
-    /*
-    try {
-      // post => Login Request
-      const res = await axios.post("http://localhost:8081/users/login", LoginRequest);
-      // extract token from res.data
-      const { token } = res.data;
-      // store the token in the localStorage
-      localStorage.setItem("jwtToken", token);
-      // set our token in header ***
-      setJWTToken(token);
-      // decode token on React
-      const decoded = jwt_decode(token);
-      // dispatch to our securityReducer
-      dispatch({
-        type: SET_CURRENT_USER,
-        payload: decoded
-      });
-    } catch (err) {
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      });
-    } */    
   }
 
   onChange(e) {
@@ -87,9 +47,10 @@ class Login extends Component {
     return (
       <div className="login">
         <div className="container">
-          <div className="row">
+          <div className="signin_wrapper" style={{margin:'100px'}}>
+
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Log In</h1>
+              <h2 className="display-4 text-center">Pantalla de Login</h2>
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <input
@@ -121,9 +82,12 @@ class Login extends Component {
                     <div className="invalid-feedback">{errors.password}</div>
                   )}
                 </div>
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                {//<input type="submit" className="btn btn-info btn-block mt-4" />
+                }
+                <button>Log in</button>
+
               </form>
-            </div>
+            </div>        
           </div>
         </div>
       </div>
@@ -142,10 +106,10 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-/*
+ 
 export default connect(
   mapStateToProps,
   { login }
 )(Login);
-*/
- export default Login;
+ 
+ //export default Login;

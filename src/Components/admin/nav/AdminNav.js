@@ -2,7 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import { firebase } from '../../../firebase';
+import setJWTToken from '../../../securityUtils/setJWTToken';
+import { connect } from "react-redux";
+import { logout } from "../../actions/securityActions";
 
+
+//class Header extends Component {
 
 const AdminNav = () => {
 
@@ -49,8 +54,27 @@ const AdminNav = () => {
             console.log('Error logging out')
         })
     }
-
-
+/*
+    export const logout = () => dispatch => {
+        localStorage.removeItem("jwtToken");
+        setJWTToken(false);
+        dispatch({
+          type: SET_CURRENT_USER,
+          payload: {}
+        });
+      };
+*/
+/*
+    const logoutHandler = () => dispatch => {
+     //   logout() {
+            this.props.logout();
+            window.location.href = "/";
+      //    }        
+        localStorage.removeItem("jwtToken");
+        setJWTToken(false);
+        console.log("asd");
+    }
+*/
     return (
         <div>
             {renderItems()}
@@ -61,4 +85,14 @@ const AdminNav = () => {
     );
 };
 
+/*
+const mapStateToProps = state => ({
+    security: state.security
+  });
+  
+  export default connect(
+    mapStateToProps,
+    { logout }
+  )(Header);
+  }*/
 export default AdminNav;
