@@ -1,6 +1,18 @@
 import axios from "axios";
 import { GET_ERRORS } from "./types";
+import { DELETE_PLAYER, GET_PLAYERS } from "./types";
+
  
+export const getPlayers = () => async dispatch => {
+  console.log("getp");
+
+  const res = await axios.get("http://localhost:8081/players");
+  dispatch({
+    type: GET_PLAYERS,
+    payload: res.data
+  });
+};
+
 export const createPlayer = (player, history) => async dispatch => {
   try {
     const res = await axios.post("http://localhost:8081/players", player);
@@ -11,6 +23,16 @@ export const createPlayer = (player, history) => async dispatch => {
       payload: err.response.data
     });
   }
+};
+ 
+export const deletePlayer = id => async dispatch => {
+  console.log("borroo"+id);
+
+  await axios.delete(`http://localhost:8081/players/${id}`);
+  dispatch({
+    type: DELETE_PLAYER,
+    payload: id
+  });
 };
  
 /*

@@ -4,9 +4,7 @@ import AdminLayout from '../../../hoc/adminLayout';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createPlayer } from "../../actions/playerActions";
-//import { Row, Form, Col, Button } from 'react-bootstrap';
 
-//quedo funcionando post (insert) y select en players
 
 class AddPlayer extends Component {
   constructor(props) {
@@ -15,43 +13,15 @@ class AddPlayer extends Component {
     this.state = {
       name: '',
       value: '',
+      email: '',
+      dayBirth: '',
       errors: {}
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   } 
-    /*
-    this.initialState = {
-      id: '',
-      name: ''
-    }
-
-    if(props.player){
-      this.state = props.player
-    } else {
-      this.state = this.initialState;
-    }
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    const name = event.target.name;
-    const value = event.target.value;
-
-    this.setState({
-      [name]: value
-    })
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    this.onFormSubmit(this.state);
-    this.setState(this.initialState);
-  }
-*/
+ 
   handleChange(event) {
     //this.setState({value: event.target.value});
     this.setState({ [event.target.name]: event.target.value });
@@ -60,93 +30,49 @@ class AddPlayer extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-   // this.onFormSubmit(this.state);
 
    const newPlayer = {
     name: this.state.name,
-    value: this.state.value
+    value: this.state.value,
+    email: this.state.email,
+    dayBirth: this.state.dayBirth
    };
-   alert('A name was submitted: ' + newPlayer);
    console.log(newPlayer);
    this.props.createPlayer(newPlayer, this.props.history);   
  
   }
 
-/*
-  onFormSubmit(data) {
-    let apiUrl;
-
-    if(this.state.isEditProduct){
-      apiUrl = 'http://localhost/dev/tcxapp/reactapi/editProduct';
-    } else {
-      apiUrl = 'http://localhost:8081/players/';
-    }
-
-    const myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
-
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(data),
-      myHeaders
-    }
-  };  
-
-  onFormSubmit(data) {
- 
-   fetch('http://localhost:8081/players/', {
-      method: 'POST',
-      headers: {
-       'Accept': 'application/json',
-       'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-       name: '"wido"',
-       email: '"a@a.com"',
-      })
-    })
-    */
-/*
-   onFormSubmit(e) {
-   
-    e.preventDefault();
-    const newPlayer = {
-      playerName: this.state.projectName,
-      value: this.state.value
-    };
-    // lo llama en project actions
-    //this.props.createProject(newPlayer, this.props.history);
-      this.props.createPlayer(newPlayer, this.props.history);
-
-  }
-*/
 
   render() {
     const { errors } = this.state;
 
     let pageTitle;
     if(this.state.id) {
-        pageTitle = <h3>Edit Player</h3>
+        pageTitle = <h3>Editar Jugador</h3>
     } else {
-        pageTitle = <h3>Add Player</h3>
+        pageTitle = <h3>Agregar Jugador</h3>
     }
 
     return(
       <AdminLayout>
-      <div>
-        {pageTitle}
+      <div className="container">
+        <div className="editplayers_dialog_wrapper">      
+          {pageTitle}
            <form  onSubmit={this.handleSubmit}>
+           <div className="form-group">
               <label>
                  Nombre           
                  <input
                     type="text"
                     className="form-control form-control-lg"
-                    placeholder="Name"
+                    placeholder="Nombre"
                     name="name"                  
                     value={this.state.name}
                     onChange={this.handleChange}                           
                  />                 
-              </label> 
+              </label>
+            </div>
+            <div className="form-group"> 
               <label>
                  Valor
                  <input
@@ -157,15 +83,43 @@ class AddPlayer extends Component {
                      value={this.state.value}   
                      onChange={this.handleChange}                                                         
                  /> 
-               </label>            
-               <div> <br /> </div>
-                  
+               </label>
+            </div>
+            <div className="form-group"> 
+              <label>
+                 Email
+                 <input
+                     type="text"
+                     className="form-control form-control-lg"
+                     placeholder="Email"
+                     name="email"
+                     value={this.state.email}   
+                     onChange={this.handleChange}                                                         
+                 /> 
+               </label>
+            </div>
+            <div className="form-group"> 
+              <label>
+                 Fecha de Nacimiento
+                 <input
+                     type="date"
+                     className="form-control form-control-lg"
+                     placeholder="Fecha de Nacimiento"
+                     name="dayBirth"
+                     value={this.state.dayBirth}   
+                     onChange={this.handleChange}                                                         
+                 /> 
+               </label>
+            </div>             
+            <div> <br /> </div>
+                {/*  
                <input
                    type="submit"                
                    className="btn btn-primary btn-block  mt-4"
-                />
+                />*/}
+                <button>Enviar</button>
             </form>
- 
+        </div>
       </div>
       </AdminLayout>
     )

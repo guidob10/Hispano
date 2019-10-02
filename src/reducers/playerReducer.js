@@ -37,7 +37,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
             players: state.players.filter(
-            player => player.playerIdentifier !== action.payload
+            player => player.id !== action.payload
         )
       };
 
