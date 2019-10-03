@@ -28,7 +28,7 @@ export default function(state = initialState, action) {
       };
     
     case GET_PLAYER:
-      return {
+            return {
         ...state,
         player: action.payload
       };

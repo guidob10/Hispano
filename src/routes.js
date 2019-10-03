@@ -11,9 +11,10 @@ import Home from './components/home';
 import Dashboard from './components/admin/Dashboard';
 import AdminMatches from './components/admin/matches';
 import AdminPlayers from './components/admin/players';
-import AddEditPlayers from './components/admin/players/addEditPlayers';
+import AddEditPlayers from './components/admin/players/editPlayer';
 import AddPlayer from './components/admin/players/addPlayer';
-import Hello from './components/admin/players/hello';
+import EditPlayer from './components/admin/players/editPlayer';
+//import Hello from './components/admin/players/hellob';
 import Login from './components/login';
 import SecuredRoute from "./securityUtils/secureRoute";
 
@@ -24,6 +25,7 @@ import SecuredRoute from "./securityUtils/secureRoute";
 //           <PublicRoute {...props} restricted={false} path="/signin" exact component={SignIn}/>
 
 //            <PrivateRoute {...props} restricted={false} path="/admin_matches" exact component={AdminMatches}/>
+      //      <PublicRoute {...props} restricted={false} path="/hello" exact component={Hello}/>                 
 
 
 const Routes = (props) => {
@@ -33,10 +35,9 @@ const Routes = (props) => {
 
             <SecuredRoute  exact path="/admin_matches" component={AdminMatches} />
 
-            <PublicRoute {...props} restricted={false} path="/admin_players/add_players/:id" exact component={AddEditPlayers}/>
+            <PublicRoute {...props} restricted={false} path="/admin_players/editplayer/:id" exact component={EditPlayer}/>
             <PublicRoute {...props} restricted={false} path="/admin_players" exact component={AdminPlayers}/> 
             <PublicRoute {...props} restricted={false} path="/admin_players/addplayer" exact component={AddPlayer}/>                 
-            <PublicRoute {...props} restricted={false} path="/hello" exact component={Hello}/>                 
             <PublicRoute {...props} restricted={false} path="/dashboard" exact component={Dashboard}/>
             <PublicRoute {...props} restricted={false} path="/login" component={Login} />            
             <PublicRoute {...props} restricted={false} path="/" exact component={Home}/>

@@ -79,7 +79,7 @@ class AdminPlayers extends Component {
                                                 {player.value}
                                             </TableCell>
                                             <TableCell>     
-                                                <Link to={`/admin_players/add_players/${player.id}`}>
+                                                <Link to={`/admin_players/editplayer/${player.id}`}>
                                                 <button>Editar</button> 
                                                 </Link>
                                             </TableCell> 

@@ -1,21 +1,34 @@
 import axios from "axios";
-import { GET_ERRORS } from "./types";
+import { GET_ERRORS, GET_PLAYER } from "./types";
 import { DELETE_PLAYER, GET_PLAYERS } from "./types";
-
+import baseUrl from '../../config/axiosURL';
  
-export const getPlayers = () => async dispatch => {
-  console.log("getp");
+const baseUrlApi = baseUrl;
 
-  const res = await axios.get("http://localhost:8081/players");
+export const getPlayers = () => async dispatch => {
+  console.log("getp ");
+
+ // clienteAxios.post('/players', jugador)
+ 
+  const res = await axios.get(baseUrlApi+"/players");
   dispatch({
     type: GET_PLAYERS,
     payload: res.data
   });
 };
 
+export const getPlayer = (id, history) => async dispatch => {
+  const res = await axios.get(baseUrlApi+`/players/${id}`);
+  console.log("getp"+id);
+  dispatch({
+    type: GET_PLAYER,
+    payload: res.data
+  });
+};
+
 export const createPlayer = (player, history) => async dispatch => {
   try {
-    const res = await axios.post("http://localhost:8081/players", player);
+    const res = await axios.post(baseUrlApi+"/players", player);
     history.push("/admin_players");  
   } catch (err) {
     dispatch({
@@ -28,13 +41,25 @@ export const createPlayer = (player, history) => async dispatch => {
 export const deletePlayer = id => async dispatch => {
   console.log("borroo"+id);
 
-  await axios.delete(`http://localhost:8081/players/${id}`);
+  await axios.delete(baseUrlApi+`/players/${id}`);
   dispatch({
     type: DELETE_PLAYER,
     payload: id
   });
 };
  
+export const updatePlayer = (id, player, history) => async dispatch => {
+  try {
+    const res = await axios.put(baseUrlApi+`/players/${id}`, player);
+    history.push("/admin_players");
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: id
+    });
+  }
+};
+
 /*
 export function crearNuevoJugadorAction(jugador){
   return (dispatch) => {
