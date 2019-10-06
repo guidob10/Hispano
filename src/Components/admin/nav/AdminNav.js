@@ -28,7 +28,7 @@ class AdminNav extends Component {
             },
             {
                 title: 'Add Match',
-                linkTo: '/admin_matches/edit_match'
+                linkTo: '/admin_matches/addmatch'
             },
             {
                 title: 'Players',

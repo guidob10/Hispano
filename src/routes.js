@@ -13,6 +13,8 @@ import AdminMatches from './components/admin/matches';
 import AdminPlayers from './components/admin/players';
 import AddEditPlayers from './components/admin/players/editPlayer';
 import AddPlayer from './components/admin/players/addPlayer';
+import AddMatch from './components/admin/matches/addMatch';
+import EditMatch from './components/admin/matches/editMatch';
 import EditPlayer from './components/admin/players/editPlayer';
 //import Hello from './components/admin/players/hellob';
 import Login from './components/login';
@@ -34,6 +36,9 @@ const Routes = (props) => {
         <Switch>
 
             <SecuredRoute  exact path="/admin_matches" component={AdminMatches} />
+            <SecuredRoute  exact path="/admin_matches/addmatch" component={AddMatch}/>                 
+            <SecuredRoute  path="/admin_matches/editmatch/:id" exact component={EditMatch}/>
+
 
             <PublicRoute {...props} restricted={false} path="/admin_players/editplayer/:id" exact component={EditPlayer}/>
             <PublicRoute {...props} restricted={false} path="/admin_players" exact component={AdminPlayers}/> 

@@ -10,8 +10,11 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import { firebaseMatches } from '../../../firebase';
-import { firebaseLooper, reverseArray } from '../../ui/misc';
+//import { firebaseMatches } from '../../../firebase';
+//import { firebaseLooper, reverseArray } from '../../ui/misc';
+import { connect } from "react-redux";
+import { getMatches, deleteMatch } from"../../actions/matchActions";
+
 
 class AdminMatches extends Component {
 
@@ -20,20 +23,23 @@ class AdminMatches extends Component {
         matches:[]
     }
 
-    componentDidMount(){
-        firebaseMatches.once('value').then(snapshot=>{
-            const matches = firebaseLooper(snapshot);
-
-            this.setState({
-                isloading: false,
-                matches:reverseArray(matches)
-            })            
-
-        });
+    componentDidMount(){       
+        //   this.props.getPlayers();
+           this.props.getMatches();
     }
 
+    onDeleteClick = id => {
+        console.log("borro" + id);
+        if(window.confirm('Seguro que deseas borrar este registro?')){
+            this.props.deleteMatch(id);
+        }     
+        //this.props.deletePlayer(id);
+    };    
 
     render() {
+
+        const { matches } = this.props.match;
+        
         return (
             <AdminLayout>
                 <div>
@@ -41,34 +47,36 @@ class AdminMatches extends Component {
                         <Table>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Date</TableCell>
-                                    <TableCell>Match</TableCell>
-                                    <TableCell>Result</TableCell>
+                                    <TableCell>Fecha</TableCell>
+                                    <TableCell>Resultado</TableCell>
                                     <TableCell>Final</TableCell>
+                                    <TableCell></TableCell>                                    
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                { this.state.matches ?
-                                    this.state.matches.map((match,i)=>(
+                                { matches ?
+                                    matches.map((match,i)=>(
                                         <TableRow key={i}>
                                             <TableCell>
                                                 {match.date}
                                             </TableCell>
                                             <TableCell>
-                                                <Link to={`/admin_matches/edit_match/${match.id}`}>
-                                                    {match.away} <strong>-</strong> {match.local}
-                                                </Link>
-                                            </TableCell>
-                                            <TableCell>
-                                                {match.resultAway} <strong>-</strong> {match.resultLocal}
+                                                {match.result} <strong>-</strong> {match.resultLocal}
                                             </TableCell>
                                             <TableCell>
                                                 { match.final === "Yes" ?
                                                     <span className="matches_tag_red">Final</span>
                                                     :
                                                     <span className="matches_tag_grenn">Not played yet</span>
-                                                }
+                                                } 
                                             </TableCell>
+                                            <TableCell>
+                                                <Link to={`/admin_matches/editmatch/${match.id}`}>
+                                                <button>Editar</button> 
+
+                                                    {match.away} <strong>-</strong> {match.local}
+                                                </Link>
+                                            </TableCell>                                            
                                         </TableRow>
                                     ))
                                     :null
@@ -76,16 +84,27 @@ class AdminMatches extends Component {
                             </TableBody>
                         </Table>
                     </Paper>
+                    {/*
                     <div className="admin_progress">
                         { this.state.isloading ?
                             <CircularProgress thickness={7} style={{color:'#98c5e9'}}/>
                             :''
                         }
-                    </div>
+                    </div>   */ }
                 </div>
             </AdminLayout>
         );
     }
 }
 
-export default AdminMatches;
+//export default AdminMatches;
+const mapStateToProps = state => ({
+    match: state.match,
+    errors: state.errors
+  });
+  
+  
+  export default connect(
+    mapStateToProps,
+    { deleteMatch, getMatches }
+  )(AdminMatches);
