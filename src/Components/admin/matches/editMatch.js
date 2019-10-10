@@ -76,6 +76,7 @@ class EditMatch extends Component {
                             name="date"
                             value={this.state.date}
                             onChange={this.onChange}
+                            required 
                         />
                         </div>
                         <h6>Resultado</h6>
@@ -86,7 +87,8 @@ class EditMatch extends Component {
                             placeholder="Resultado"
                             name="result"
                             value={this.state.result}
-                            onChange={this.onChange}                          
+                            onChange={this.onChange}  
+                            required                         
                         />
                         </div>
  

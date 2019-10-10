@@ -25,10 +25,11 @@ export const getPlayer = (id, history) => async dispatch => {
     payload: res.data
   });
 };
-
+/*
 export const createPlayer = (player, history) => async dispatch => {
   try {
     const res = await axios.post(baseUrlApi+"/players", player);
+ 
     history.push("/admin_players");  
   } catch (err) {
     dispatch({
@@ -36,7 +37,31 @@ export const createPlayer = (player, history) => async dispatch => {
       payload: err.response.data
     });
   }
-};
+};*/
+export const createPlayer = (player, history) => async dispatch => {
+ // try {
+    const form = new FormData();
+  //  formData.append(player.defaultImg, fs.createReadStream(player.defaultImg));
+    form.append('defaultImg', player.defaultImg); 
+    form.append('name', player.name);
+    form.append('value', player.value);    
+    form.append('email', player.email); 
+    form.append('dayBirth', player.dayBirth); 
+        
+    const res = await axios({
+    method: 'post',
+    url: baseUrlApi+"/players",
+    data: form,
+    config: { headers: { 'content-type': `multipart/form-data`}}})     
+    
+  .then((res)=>{ 
+    history.push("/admin_players");  
+  },(err)=>{
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data});
+  })};
+ //}
  
 export const deletePlayer = id => async dispatch => {
   console.log("borroo"+id);

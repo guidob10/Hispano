@@ -10,8 +10,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import { firebaseMatches } from '../../../firebase';
-import { firebaseLooper, reverseArray } from '../../ui/misc';
+//import { firebaseMatches } from '../../../firebase';
+//import { firebaseLooper, reverseArray } from '../../ui/misc';
 import { connect } from "react-redux";
 import { deletePlayer} from "../../actions/playerActions";
 import { getPlayers } from"../../actions/playerActions";

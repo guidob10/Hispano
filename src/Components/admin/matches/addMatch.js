@@ -68,7 +68,8 @@ class AddMatch extends Component {
                     placeholder="Fecha"
                     name="date"                  
                     value={this.state.date}
-                    onChange={this.handleChange}                           
+                    onChange={this.handleChange}     
+                    required                       
                  />                 
               </label>
             </div>
@@ -81,7 +82,8 @@ class AddMatch extends Component {
                      placeholder="Resultado"
                      name="result"
                      value={this.state.result}   
-                     onChange={this.handleChange}                                                         
+                     onChange={this.handleChange} 
+                     required                                                         
                  /> 
                </label>
             </div>
@@ -94,7 +96,8 @@ class AddMatch extends Component {
                      placeholder="Email"
                      name="email"
                      value={this.state.email}   
-                     onChange={this.handleChange}                                                         
+                     onChange={this.handleChange}
+                     required                                                          
                  /> 
                </label>
             </div>         

@@ -78,6 +78,7 @@ class EditPlayer extends Component {
                             name="name"
                             value={this.state.name}
                             onChange={this.onChange}
+                            required 
                         />
                         </div>
                         <h6>Valor</h6>
@@ -88,7 +89,8 @@ class EditPlayer extends Component {
                             placeholder="Valor"
                             name="value"
                             value={this.state.value}
-                            onChange={this.onChange}                          
+                            onChange={this.onChange} 
+                            required                          
                         />
                         </div>
                         <h6>Fecha de nacimiento</h6>
@@ -99,6 +101,7 @@ class EditPlayer extends Component {
                             name="dayBirth"
                             value={this.state.dayBirth}
                             onChange={this.onChange}
+                            required 
                         />
 
                         </div>
