@@ -58,6 +58,7 @@ export const createPlayer = (player, history) => async dispatch => {
     history.push("/admin_players");  
   },(err)=>{
     dispatch({
+      //ver q falla en error
       type: GET_ERRORS,
       payload: err.response.data});
   })};

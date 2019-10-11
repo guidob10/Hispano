@@ -12,7 +12,7 @@ class AddPlayer extends Component {
 
     this.state = {
       name: '',
-      value: '',
+      position: '',
       email: '',
       dayBirth: '',
       defaultImg: null,
@@ -61,7 +61,7 @@ class AddPlayer extends Component {
 
    const newPlayer = {
     name: this.state.name,
-    value: this.state.value,
+    position: this.state.position,
     email: this.state.email,
     defaultImg: this.state.defaultImg,
     dayBirth: this.state.dayBirth
@@ -105,13 +105,13 @@ class AddPlayer extends Component {
             </div>
             <div className="form-group"> 
               <label>
-                 <div className="label_inputs">Valor</div> 
+                 <div className="label_inputs">Posicion</div> 
                  <input
                      type="text"
                      className="form-control form-control-lg"
-                     placeholder="Valor"
-                     name="value"
-                     value={this.state.value}   
+                     placeholder="Posicion"
+                     name="position"
+                     value={this.state.position}   
                      onChange={this.handleChange} 
                      required                                                         
                  /> 

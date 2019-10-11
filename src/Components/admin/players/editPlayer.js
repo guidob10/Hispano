@@ -17,7 +17,7 @@ class EditPlayer extends Component {
     this.state = {
       id: '',
       name: '',
-      value: '',
+      position: '',
       dayBirth: ''
     };
 
@@ -33,12 +33,12 @@ class EditPlayer extends Component {
     componentWillReceiveProps(nextProps) {
         console.log("getx"+nextProps.player);
 
-        const { id, name, value, dayBirth } = nextProps.player;
+        const { id, name, position, dayBirth } = nextProps.player;
     
         this.setState({
           id,
           name,
-          value,
+          position,
           dayBirth
         });
       }    
@@ -53,7 +53,7 @@ class EditPlayer extends Component {
         const updatePlayer = {
           id: this.state.id,
           name: this.state.name,
-          value: this.state.value,
+          position: this.state.position,
           dayBirth: this.state.dayBirth
         };
         const { id } =  this.state;
@@ -81,14 +81,14 @@ class EditPlayer extends Component {
                             required 
                         />
                         </div>
-                        <h6>Valor</h6>
+                        <h6>Posicion</h6>
                         <div className="form-group">
                         <input
                             type="text"
                             className="form-control form-control-lg"
-                            placeholder="Valor"
-                            name="value"
-                            value={this.state.value}
+                            placeholder="Posicion"
+                            name="position"
+                            value={this.state.position}
                             onChange={this.onChange} 
                             required                          
                         />
