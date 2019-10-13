@@ -44,7 +44,7 @@ class LeagueTable extends Component {
                     <TableCell style={style.cell}>{i+1}</TableCell>
                     <TableCell style={style.cell}>{pos.team}</TableCell>
                     <TableCell numeric style={style.cell}>{pos.w}</TableCell>
-                    <TableCell numeric style={style.cell}>{pos.d}</TableCell>
+                  {/*  <TableCell numeric style={style.cell}>{pos.d}</TableCell>*/}
                     <TableCell numeric style={style.cell}>{pos.l}</TableCell>
                     <TableCell numeric style={style.cell}>{pos.pts}</TableCell>
                 </TableRow>
@@ -60,17 +60,17 @@ class LeagueTable extends Component {
         return (
             <div className="league_table_wrapper">
                 <div className="title">
-                    League Table
+                    Tabla en la Liga
                 </div>
                 <div style={{background: '#98c6e9'}}>
                 <Table>
                     <TableHead>
                         <TableRow>
                             <TableCell style={style.cell}>Pos</TableCell>
-                            <TableCell style={style.cell}>Team</TableCell>
-                            <TableCell style={style.cell}>W</TableCell>
-                            <TableCell style={style.cell}>L</TableCell>
+                            <TableCell style={style.cell}>Equipo</TableCell>
+                            <TableCell style={style.cell}>V</TableCell>
                             <TableCell style={style.cell}>D</TableCell>
+                            {/*<TableCell style={style.cell}>D</TableCell>*/}
                             <TableCell style={style.cell}>Pts</TableCell>
                         </TableRow>
                     </TableHead>

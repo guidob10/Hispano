@@ -36,7 +36,7 @@ class MeetPlayers extends Component {
                                         display: 'inline-block',
                                         marginBottom: '20px',
                                     }}>
-                                        Meet
+                                        Conoce
                                 </Tag>
                                 </div>
                                 <div>
@@ -44,7 +44,7 @@ class MeetPlayers extends Component {
                                         display: 'inline-block',
                                         marginBottom: '20px',
                                     }}>
-                                        The
+                                        Los
                                 </Tag>
                                 </div>
                                 <div>
@@ -52,7 +52,7 @@ class MeetPlayers extends Component {
                                         display: 'inline-block',
                                         marginBottom: '20px',
                                     }}  >
-                                        Players
+                                        Jugadores
                                 </Tag>
                                 </div>
                                 <div>
@@ -68,7 +68,7 @@ class MeetPlayers extends Component {
                                             border: '1px solid #0e1731'
                                         }}
                                     >
-                                        Meet them here
+                                        Conocelos Aqui
                                 </Tag>
                                 </div>
                             </div>

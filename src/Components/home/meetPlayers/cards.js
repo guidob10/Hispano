@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { easePolyOut } from 'd3-ease';
 import Animate from 'react-move/Animate';
 //import Otamendi from '../../../Resources/images/players/Otamendi.png';
-import Otamendi from '../../../resources/images/players/Otamendi.png';
+import Hure from '../../../resources/images/players/Hure.jpg';
 import PlayerCard from '../../ui/playerCard';
 
 
@@ -57,10 +57,10 @@ class HomeCards extends Component {
                             }}
                         >
                             <PlayerCard
-                                number="30"
-                                name="Nicolas"
-                                lastname="Otamendi"
-                                bck={Otamendi}
+                                number="5"
+                                name="Daniel"
+                                lastname="Hure"
+                                bck={Hure}
                             />
                         </div>
                     )
