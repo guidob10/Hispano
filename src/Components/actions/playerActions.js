@@ -44,10 +44,10 @@ export const createPlayer = (player, history) => async dispatch => {
   //  formData.append(player.defaultImg, fs.createReadStream(player.defaultImg));
     form.append('defaultImg', player.defaultImg); 
     form.append('name', player.name);
-    form.append('value', player.value);    
+    form.append('position', player.position);    
     form.append('email', player.email); 
     form.append('dayBirth', player.dayBirth); 
-        
+
     const res = await axios({
     method: 'post',
     url: baseUrlApi+"/players",

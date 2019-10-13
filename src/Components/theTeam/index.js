@@ -11,15 +11,23 @@ import { getPlayers } from"../actions/playerActions";
 import { connect } from "react-redux";
   
 class TheTeam extends Component {
-
+    
+    constructor(props) {
+        super(props);
+       // this.onMove = this.onMove.bind(this);
+        this.testVarible= "http://localhost:8081/"; // no funca ver como hacer
+        //ver como poner tipo webapps/output ver como deployar en prod
+    }    
+    
     state = {
         loading:false,
         players:[]
     }
 
+
     componentDidMount(){
         this.props.getPlayers();
-        
+         
         /*
         firebasePlayers.once('value').then(snapshot =>{
             const players = firebaseLooper(snapshot);
@@ -63,7 +71,7 @@ class TheTeam extends Component {
                                 number={player.number}
                                 name={player.name}
                                 lastname={player.lastname}
-                                bck={player.url}
+                                bck={this.testVarible+player.defaultImg}
                             />
                         </div>
                     </Fade>
