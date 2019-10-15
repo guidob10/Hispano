@@ -10,3 +10,5 @@ export const GET_MATCHES = "GET_MATCHES";
 export const GET_MATCH = "GET_MATCH";
 export const DELETE_MATCH = "DELETE_MATCH";
 export const UPDATE_MATCH = "UPDATE_MATCH";
+
+export const GET_TEAMS = "GET_TEAMS";

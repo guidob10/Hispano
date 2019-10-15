@@ -3,7 +3,10 @@ import AdminLayout from '../../../hoc/adminLayout';
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import Select from 'react-select';
+
 import { createMatch } from "../../actions/matchActions";
+import { getTeams } from "../../actions/teamActions";
 
 
 class AddMatch extends Component {
@@ -12,9 +15,12 @@ class AddMatch extends Component {
 
     this.state = {
       date: '',
-      result: '',
-      email: '',
-      dayBirth: '',
+      teamLocal: '',
+      teamAway: '',
+      resultLocal: '',
+      resultAway: '',
+      teams: {},   
+      selectedOption: null,   
       errors: {}
     };
 
@@ -28,23 +34,49 @@ class AddMatch extends Component {
 
   }
 
+  handleChangeCombo = selectedOption => {
+    /*
+    this.setState(
+      { selectedOption },
+      () => console.log(`Option selected:`, this.state.selectedOption)
+    );*/
+
+    this.setState( { selectedOption : selectedOption, teamLocal : selectedOption.id})
+  };
+
   handleSubmit(event) {
     event.preventDefault();
 
-   const newMatch = {
-    date: this.state.date,
-    result: this.state.result,
-    email: this.state.email,
-    dayBirth: this.state.dayBirth
-   };
+    const newMatch = {
+     date: this.state.date,
+     resultLocal: this.state.resultLocal,
+     resultAway: this.state.resultAway,    
+     //teamLocal: this.state.teamLocal,
+     teamLocal: this.state.teamLocal,
+     teamAway: this.state.teamAway
+    };
+
    console.log(newMatch);
    this.props.createMatch(newMatch, this.props.history);   
- 
+  }
+
+  componentDidMount() {
+    this.props.getTeams();
+    /*
+    this.setState({
+      teams: [
+        { name: 'Afghanistan' , label: 'asd'},
+        {name: 'Aland Islands',label:'ff'},
+        {name: 'Albania', label: '222'}
+      ]
+    });*/
   }
 
 
   render() {
-    const { errors } = this.state;
+    const { errors, selectedOption } = this.state;
+    // recupera teams, de store redux team
+    const { teams } = this.props.team;
 
     let pageTitle;
     if(this.state.id) {
@@ -72,16 +104,56 @@ class AddMatch extends Component {
                     required                       
                  />                 
               </label>
-            </div>
+            </div>          
+            {/* 
             <div className="form-group"> 
               <label>
-              Resultado
+                 Equipo Local
+                 <input
+                     type="text"
+                     className="form-control form-control-lg"
+                     placeholder=" "
+                     name="teamLocal"
+                     value={this.state.teamLocal}   
+                     onChange={this.handleChange}
+                     required                                                          
+                 /> 
+               </label>
+            </div> */}
+            <div>
+              <label>
+                 Equipo Testdropdown                
+                 <Select options={ teams } 
+                         value={selectedOption} 
+                         onChange={this.handleChangeCombo} 
+                         getOptionLabel={option => `${option.name}`
+                        }
+                  />
+              </label>                            
+            </div>                
+            <div className="form-group"> 
+              <label>
+                 Equipo Visita
+                 <input
+                     type="text"
+                     className="form-control form-control-lg"
+                     placeholder=" "
+                     name="teamAway"
+                     value={this.state.teamAway}   
+                     onChange={this.handleChange}
+                     required                                                          
+                 /> 
+               </label>               
+            </div>     
+            <div className="form-group"> 
+              <label>
+              Resultado Local
                  <input
                      type="text"
                      className="form-control form-control-lg"
                      placeholder="Resultado"
-                     name="result"
-                     value={this.state.result}   
+                     name="resultLocal"
+                     value={this.state.resultLocal}   
                      onChange={this.handleChange} 
                      required                                                         
                  /> 
@@ -89,18 +161,18 @@ class AddMatch extends Component {
             </div>
             <div className="form-group"> 
               <label>
-                 Email
+              Resultado Visita
                  <input
                      type="text"
                      className="form-control form-control-lg"
-                     placeholder="Email"
-                     name="email"
-                     value={this.state.email}   
-                     onChange={this.handleChange}
-                     required                                                          
+                     placeholder="Resultado"
+                     name="resultAway"
+                     value={this.state.resultAway}   
+                     onChange={this.handleChange} 
+                     required                                                         
                  /> 
                </label>
-            </div>         
+            </div>                                 
             <div> <br /> </div>
                 {/*  
                <input
@@ -118,10 +190,11 @@ class AddMatch extends Component {
 
 // export default AddPlayer;
 const mapStateToProps = state => ({
-  errors: state.errors
+  errors: state.errors,
+  team: state.team,
 });
 
 export default connect(
   mapStateToProps,
-  { createMatch }
+  { createMatch, getTeams }
 )(AddMatch);

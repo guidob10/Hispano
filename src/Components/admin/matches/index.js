@@ -48,7 +48,9 @@ class AdminMatches extends Component {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>Fecha</TableCell>
-                                    <TableCell>Resultado</TableCell>
+                                    <TableCell>Equipo Local</TableCell>
+                                    <TableCell>Equipo Visita</TableCell>                                                                        
+                                    <TableCell>Resultado</TableCell>                                    
                                     <TableCell>Final</TableCell>
                                     <TableCell></TableCell>                                    
                                 </TableRow>
@@ -60,6 +62,12 @@ class AdminMatches extends Component {
                                             <TableCell>
                                                 {match.date}
                                             </TableCell>
+                                            <TableCell>
+                                                {match.teamLocal.name}
+                                            </TableCell>
+                                            <TableCell>
+                                                {match.teamAway.name}
+                                            </TableCell>                                                                                        
                                             <TableCell>
                                                 {match.result} <strong>-</strong> {match.resultLocal}
                                             </TableCell>

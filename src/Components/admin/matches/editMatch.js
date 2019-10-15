@@ -15,8 +15,10 @@ class EditMatch extends Component {
     this.state = {
       id: '',
       name: '',
-      value: '',
-      dayBirth: ''
+      teamLocal: '',
+      teamAway: '',
+      resultLocal: '',
+      resultAway: ''
     };
 
     this.onChange = this.onChange.bind(this);
@@ -31,13 +33,15 @@ class EditMatch extends Component {
     componentWillReceiveProps(nextProps) {
         console.log("getx"+nextProps.onematch);
 
-        const { id, date, result, dayBirth } = nextProps.onematch;
+        const { id, date, teamLocal, teamAway, resultLocal, resultAway} = nextProps.onematch;
     
         this.setState({
           id,
           date,
-          result,
-          dayBirth
+          teamLocal,
+          teamAway,
+          resultLocal,
+          resultAway
         });
       }    
     
@@ -51,8 +55,10 @@ class EditMatch extends Component {
         const updateMatch = {
           id: this.state.id,
           date: this.state.date,
-          result: this.state.result,
-          dayBirth: this.state.dayBirth
+          teamLocal: this.state.teamLocal,
+          teamAway: this.state.teamAway,
+          resultLocal: this.state.resultLocal,
+          resultAway: this.state.resultAway          
         };
         const { id } =  this.state;
         this.props.updateMatch(id,updateMatch, this.props.history);
@@ -79,19 +85,55 @@ class EditMatch extends Component {
                             required 
                         />
                         </div>
-                        <h6>Resultado</h6>
+                        <h6>Equipo Local</h6>
+                        <div className="form-group">
+                        <input
+                            type="text"
+                            className="form-control form-control-lg"
+                            placeholder="Equipo"
+                            name="teamLocal"
+                            value={this.state.teamLocal}
+                            onChange={this.onChange}  
+                            required                         
+                        />
+                        </div>    
+                        <h6>Equipo Visita</h6>
+                        <div className="form-group">
+                        <input
+                            type="text"
+                            className="form-control form-control-lg"
+                            placeholder="Equipo"
+                            name="teamAway"
+                            value={this.state.teamAway}
+                            onChange={this.onChange}  
+                            required                         
+                        />
+                        </div>                                            
+                        <h6>Resultado Local</h6>
                         <div className="form-group">
                         <input
                             type="text"
                             className="form-control form-control-lg"
                             placeholder="Resultado"
-                            name="result"
-                            value={this.state.result}
+                            name="resultLocal"
+                            value={this.state.resultLocal}
                             onChange={this.onChange}  
                             required                         
                         />
                         </div>
- 
+                        <h6>Resultado Visita</h6>
+                        <div className="form-group">
+                        <input
+                            type="text"
+                            className="form-control form-control-lg"
+                            placeholder="Resultado"
+                            name="resultAway"
+                            value={this.state.resultAway}
+                            onChange={this.onChange}  
+                            required                         
+                        />
+                        </div> 
+
                         <button>Enviar</button>                        
                     </form>
                     </div>

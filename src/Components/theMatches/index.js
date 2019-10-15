@@ -6,6 +6,8 @@ import { firebaseLooper, reverseArray } from '../ui/misc';
 
 import LeagueTable from './table';
 import MatchesList from './matchesList';
+import { connect } from "react-redux";
+import { getMatches } from"../actions/matchActions";
 
 class TheMatches extends Component {
 
@@ -18,6 +20,10 @@ class TheMatches extends Component {
     }
 
     componentDidMount(){
+        this.props.getMatches();
+      //   this.setState({matches : this.matches})
+
+        /*
         firebaseMatches.once('value').then(snapshot=>{
             const matches = firebaseLooper(snapshot);
 
@@ -26,7 +32,7 @@ class TheMatches extends Component {
                 matches: reverseArray(matches),
                 filterMatches: reverseArray(matches)
             });
-        })
+        })*/
     }
 
     showPlayed = (played) => {
@@ -56,6 +62,8 @@ class TheMatches extends Component {
 
     render() {
         const state = this.state;
+   //     const { matches } = this.props.matches;
+        const { matches } = this.props.match;
         return (
             <div className="the_matches_container">
                 <div className="the_matches_wrapper">
@@ -107,7 +115,8 @@ class TheMatches extends Component {
                                 </div>
                             </div>
                         </div>
-                        <MatchesList matches={state.filterMatches}/>
+                        {/* <MatchesList matches={state.filterMatches}/>*/}
+                        <MatchesList matches={matches}/>
                     </div>
                     <div className="right">
                         <LeagueTable/>
@@ -118,4 +127,14 @@ class TheMatches extends Component {
     }
 }
 
-export default TheMatches;
+//export default TheMatches;
+const mapStateToProps = state => ({
+    match: state.match,
+    errors: state.errors
+  });
+  
+  
+  export default connect(
+    mapStateToProps,
+    {getMatches }
+  )(TheMatches);
