@@ -69,7 +69,7 @@ class AdminMatches extends Component {
                                                 {match.teamAway.name}
                                             </TableCell>                                                                                        
                                             <TableCell>
-                                                {match.result} <strong>-</strong> {match.resultLocal}
+                                                {match.resultLocal} <strong>-</strong> {match.resultAway}
                                             </TableCell>
                                             <TableCell>
                                                 { match.final === "Yes" ?

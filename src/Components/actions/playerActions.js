@@ -60,7 +60,7 @@ export const createPlayer = (player, history) => async dispatch => {
     dispatch({
       //ver q falla en error
       type: GET_ERRORS,
-      payload: err.response.data});
+      payload: res.data});
   })};
  //}
  
@@ -73,7 +73,7 @@ export const deletePlayer = id => async dispatch => {
     payload: id
   });
 };
- 
+ /*
 export const updatePlayer = (id, player, history) => async dispatch => {
   try {
     const res = await axios.put(baseUrlApi+`/players/${id}`, player);
@@ -84,7 +84,34 @@ export const updatePlayer = (id, player, history) => async dispatch => {
       payload: id
     });
   }
-};
+};*/
+
+// agregar la foto
+export const updatePlayer = (id, player, history) => async dispatch => {
+  // try {
+     const form = new FormData();
+   //  formData.append(player.defaultImg, fs.createReadStream(player.defaultImg));
+     form.append('defaultImg', player.defaultImg); 
+     form.append('name', player.name);
+     form.append('position', player.position);    
+     form.append('email', player.email); 
+     form.append('dayBirth', player.dayBirth);
+     form.append('defaultImg',player.defaultImg) ;
+ 
+     const res = await axios({
+     method: 'PUT',
+     url: baseUrlApi+`/players/${id}`,
+     data: form,
+     config: { headers: { 'content-type': `multipart/form-data`}}})     
+     
+   .then((res)=>{ 
+     history.push("/admin_players");  
+   },(err)=>{
+     dispatch({
+       //ver q falla en error
+       type: GET_ERRORS   ,
+        payload: id } );
+   })};
 
 /*
 export function crearNuevoJugadorAction(jugador){

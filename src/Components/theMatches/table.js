@@ -36,7 +36,7 @@ class LeagueTable extends Component {
         */
     }
 
-
+/*
     showTeampositions = (pos) => (
         pos ?
             pos.map((pos,i)=>(
@@ -44,14 +44,32 @@ class LeagueTable extends Component {
                     <TableCell style={style.cell}>{i+1}</TableCell>
                     <TableCell style={style.cell}>{pos.team}</TableCell>
                     <TableCell numeric style={style.cell}>{pos.w}</TableCell>
-                  {/*  <TableCell numeric style={style.cell}>{pos.d}</TableCell>*/}
+                     <TableCell numeric style={style.cell}>{pos.d}</TableCell> 
                     <TableCell numeric style={style.cell}>{pos.l}</TableCell>
                     <TableCell numeric style={style.cell}>{pos.pts}</TableCell>
                 </TableRow>
+                <TableRow key={i}>
+                    <TableCell style={style.cell}>5</TableCell>
+                    <TableCell style={style.cell}>Hispano</TableCell>
+                    <TableCell numeric style={style.cell}>1</TableCell>
+                     <TableCell numeric style={style.cell}>2</TableCell> 
+                    <TableCell numeric style={style.cell}>3</TableCell>
+                    <TableCell numeric style={style.cell}>10</TableCell>
+                </TableRow>                
             ))
             :null
     )
+*/
+showTeampositions = (pos) => (
 
+            <TableRow key={1}>
+                <TableCell style={style.cell}>5</TableCell>
+                <TableCell style={style.cell}>Hispano</TableCell>
+                <TableCell numeric style={style.cell}>1</TableCell>
+                 <TableCell numeric style={style.cell}>2</TableCell> 
+                <TableCell numeric style={style.cell}>3</TableCell>
+            </TableRow>                
+)
     
    
 
@@ -60,7 +78,7 @@ class LeagueTable extends Component {
         return (
             <div className="league_table_wrapper">
                 <div className="title">
-                    Tabla en la Liga
+                    Posición en Tabla
                 </div>
                 <div style={{background: '#98c6e9'}}>
                 <Table>

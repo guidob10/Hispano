@@ -61,6 +61,7 @@ class AdminPlayers extends Component {
                                     <TableCell>Fecha de Nacimiento</TableCell>
                                     <TableCell>Nombre</TableCell>
                                     <TableCell>Valor</TableCell>
+                                    <TableCell>Posicion</TableCell>
                                     <TableCell> </TableCell>   
                                     <TableCell> </TableCell>                                                                       
                                 </TableRow>
@@ -78,6 +79,9 @@ class AdminPlayers extends Component {
                                             <TableCell>
                                                 {player.value}
                                             </TableCell>
+                                            <TableCell>
+                                                {player.position}
+                                            </TableCell>                                            
                                             <TableCell>     
                                                 <Link to={`/admin_players/editplayer/${player.id}`}>
                                                 <button>Editar</button> 

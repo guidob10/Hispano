@@ -20,12 +20,13 @@ class AddMatch extends Component {
       resultLocal: '',
       resultAway: '',
       teams: {},   
-      selectedOption: null,   
+   //   selectedOption: null,   
       errors: {}
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    //this.handleChangeCombo = this.handleChangeCombo.bind(this);
   } 
  
   handleChange(event) {
@@ -33,16 +34,21 @@ class AddMatch extends Component {
     this.setState({ [event.target.name]: event.target.value });
 
   }
-
+ 
   handleChangeCombo = selectedOption => {
-    /*
-    this.setState(
-      { selectedOption },
-      () => console.log(`Option selected:`, this.state.selectedOption)
-    );*/
 
-    this.setState( { selectedOption : selectedOption, teamLocal : selectedOption.id})
+   // this.setState( { selectedOption : selectedOption, teamLocal : selectedOption})
+      this.setState( {   teamLocal : selectedOption})
+
   };
+ 
+  handleChangeComboAway = selectedOption => {
+    // this.setState( { selectedOption : selectedOption, teamLocal : selectedOption})
+       this.setState( {  teamAway : selectedOption})
+   };
+  
+ 
+ 
 
   handleSubmit(event) {
     event.preventDefault();
@@ -74,7 +80,7 @@ class AddMatch extends Component {
 
 
   render() {
-    const { errors, selectedOption } = this.state;
+    const { errors, selectedOption, teamLocal, teamAway } = this.state;
     // recupera teams, de store redux team
     const { teams } = this.props.team;
 
@@ -120,31 +126,29 @@ class AddMatch extends Component {
                  /> 
                </label>
             </div> */}
-            <div>
+            <div className="form-group"> 
               <label>
-                 Equipo Testdropdown                
+                 Equipo Local                
                  <Select options={ teams } 
-                         value={selectedOption} 
+                         value={teamLocal} 
                          onChange={this.handleChangeCombo} 
                          getOptionLabel={option => `${option.name}`
-                        }
+                                        }
                   />
               </label>                            
             </div>                
             <div className="form-group"> 
               <label>
                  Equipo Visita
-                 <input
-                     type="text"
-                     className="form-control form-control-lg"
-                     placeholder=" "
-                     name="teamAway"
-                     value={this.state.teamAway}   
-                     onChange={this.handleChange}
-                     required                                                          
-                 /> 
+                 <Select options={ teams } 
+                         value={teamAway} 
+                         onChange={this.handleChangeComboAway} 
+                         getOptionLabel={option => `${option.name}`
+                                        }
+                  />
                </label>               
             </div>     
+            
             <div className="form-group"> 
               <label>
               Resultado Local

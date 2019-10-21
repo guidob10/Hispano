@@ -13,6 +13,7 @@ export const getMatches = () => async dispatch => {
     payload: res.data
   });
 };
+ 
 
 export const getMatch = (id, history) => async dispatch => {
   const res = await axios.get(baseUrlApi+`/matches/${id}`);

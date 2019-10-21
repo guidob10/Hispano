@@ -5,6 +5,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import FormField from '../../ui/formFields';
 import { validate } from '../../ui/misc';
+import Select from 'react-select';
+import { getTeams } from "../../actions/teamActions";
+
 
  
 class EditMatch extends Component {
@@ -28,6 +31,8 @@ class EditMatch extends Component {
     componentDidMount() {
        const { id } = this.props.match.params; // parametro de url a id
        this.props.getMatch(id, this.props.history);
+       this.props.getTeams();
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -64,7 +69,21 @@ class EditMatch extends Component {
         this.props.updateMatch(id,updateMatch, this.props.history);
       }
  
+      handleChangeComboLocal = selectedOption => {
+
+        // this.setState( { selectedOption : selectedOption, teamLocal : selectedOption})
+           this.setState( {   teamLocal : selectedOption})
+     
+       };
+      
+       handleChangeComboAway = selectedOption => {
+         // this.setState( { selectedOption : selectedOption, teamLocal : selectedOption})
+            this.setState( {  teamAway : selectedOption})
+        };
+
     render() {
+        const { teamLocal, teamAway } = this.state;
+        const { teams } = this.props.team;      
         return (
             <AdminLayout>
                 <div className="editmatch_dialog_wrapper">
@@ -87,6 +106,7 @@ class EditMatch extends Component {
                         </div>
                         <h6>Equipo Local</h6>
                         <div className="form-group">
+                          {/*
                         <input
                             type="text"
                             className="form-control form-control-lg"
@@ -95,19 +115,27 @@ class EditMatch extends Component {
                             value={this.state.teamLocal}
                             onChange={this.onChange}  
                             required                         
-                        />
+                          />*/}
+                          <label>
+                             <Select options={ teams } 
+                                    value={teamLocal} 
+                                    onChange={this.handleChangeComboLocal} 
+                                    getOptionLabel={option => `${option.name}`
+                                                    }
+                              /> 
+                          </label> 
+
                         </div>    
                         <h6>Equipo Visita</h6>
                         <div className="form-group">
-                        <input
-                            type="text"
-                            className="form-control form-control-lg"
-                            placeholder="Equipo"
-                            name="teamAway"
-                            value={this.state.teamAway}
-                            onChange={this.onChange}  
-                            required                         
-                        />
+                          <label>
+                             <Select options={ teams } 
+                                    value={teamAway} 
+                                    onChange={this.handleChangeComboAway} 
+                                    getOptionLabel={option => `${option.name}`
+                                                    }
+                              /> 
+                          </label>  
                         </div>                                            
                         <h6>Resultado Local</h6>
                         <div className="form-group">
@@ -145,10 +173,11 @@ class EditMatch extends Component {
 }
 
 const mapStateToProps = state => ({
-    onematch: state.match.onematch
+    onematch: state.match.onematch,
+    team: state.team,
   });
   
   export default connect(
     mapStateToProps,
-    { getMatch, updateMatch }
+    { getMatch, updateMatch, getTeams }
   )(EditMatch);

@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createPlayer } from "../../actions/playerActions";
 import FileUploader from "../../ui/fileUploader";
+import Select from 'react-select';
+
 
 class AddPlayer extends Component {
   constructor(props) {
@@ -16,30 +18,19 @@ class AddPlayer extends Component {
       email: '',
       dayBirth: '',
       defaultImg: null,
+      positions:[{label: "Base", value:1}, {label:"Alero", value:2},  {label:"Pivot", value:3}, {label:"DT", value:4}],
       errors: {}
     };
+
+    //this.positions = [ "Base", "Alero", "Pivot", "DT" ]; 
+    //this.positions =[]
+
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOnFileChange = this.handleOnFileChange.bind(this);
 
   } 
-
-  /*
-  handleChange(event)  {
-    switch (event.target.name) {
-      // Updated this
-      case 'selectedFile':
-        if(event.target.files.length > 0) {
-            // Accessed .name from file 
-            this.setState({ defaultImg: event.target.files[0] });
-        }
-      break;
-      default:
-        this.setState({ [event.target.name]: event.target.value });
-     }
-        console.log(this.state.defaultImg);
-  }*/
 
   handleOnFileChange = (event) => {
     let defaultImg = event.target.files[0];
@@ -50,11 +41,16 @@ class AddPlayer extends Component {
   }   
 
   handleChange(event) { 
-    //this.setState({value: event.target.value});
     this.setState({ [event.target.name]: event.target.value  });
     console.log(this.state)
   }
- 
+  
+
+  handleChangeCombo = selectedOption => {
+    // this.setState( { selectedOption : selectedOption, teamLocal : selectedOption})
+    console.log("select"+selectedOption);
+       this.setState( {   position : selectedOption})
+   };
 
   handleSubmit(event) {
     event.preventDefault();
@@ -73,7 +69,8 @@ class AddPlayer extends Component {
 
 
   render() {
-    const { errors, defaultImg } = this.state;
+    const {  positions, position, errors, defaultImg } = this.state;
+    
     //const { uploading, images } = this.state
 
     let pageTitle;
@@ -106,6 +103,7 @@ class AddPlayer extends Component {
             <div className="form-group"> 
               <label>
                  <div className="label_inputs">Posicion</div> 
+                 {/*
                  <input
                      type="text"
                      className="form-control form-control-lg"
@@ -114,7 +112,14 @@ class AddPlayer extends Component {
                      value={this.state.position}   
                      onChange={this.handleChange} 
                      required                                                         
-                 /> 
+                 />*/ }
+                 <Select options={positions } 
+                         value={position} 
+                         onChange={this.handleChangeCombo} 
+                         getOptionLabel={option => `${option.label}` }
+                    
+                  />
+              
                </label>
             </div>
             <div className="form-group"> 
