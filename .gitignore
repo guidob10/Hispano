@@ -1,1 +1,8 @@
 node_modules/
+asset-manifest.json
+favicon.ico
+images/
+index.html
+manifest.json
+service-worker.js
+static/
