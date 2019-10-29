@@ -33,7 +33,7 @@ const App = () => {
 
     return (
       <Provider store={store}>
-        <BrowserRouter>
+        <BrowserRouter path="/hispano" >
             <Routes/>
         </BrowserRouter>
       </Provider>
