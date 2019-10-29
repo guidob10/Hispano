@@ -2,10 +2,13 @@ import axios from "axios";
 import { GET_ERRORS, SET_CURRENT_USER } from "./types";
 import setJWTToken from "../../securityUtils/setJWTToken";
 import jwt_decode from "jwt-decode";
+import baseUrl from '../../config/axiosURL';
+ 
+const baseUrlApi = baseUrl;
 
 export const createNewUser = (newUser, history) => async dispatch => {
   try {
-    await axios.post("http://localhost:8081/users/register", newUser); 
+    await axios.post(baseUrlApi+"/users/register", newUser); 
     
     history.push("/login");
     dispatch({
@@ -25,7 +28,7 @@ export const login = LoginRequest => async dispatch => {
   console.log("llegue3a");
   try {
     // post => Login Request
-    const res = await axios.post("http://localhost:8081/users/login", LoginRequest);
+    const res = await axios.post(baseUrlApi+"/users/login", LoginRequest);
     // extract token from res.data
     const { token } = res.data;
     // store the token in the localStorage
