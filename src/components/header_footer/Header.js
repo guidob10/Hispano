@@ -38,7 +38,7 @@ class Header extends Component {
                         <Button color="inherit">Partidos</Button>
                     </Link>
                     <Link to="/dashboard">
-                        <Button color="inherit">Administracion</Button>
+                        <Button color="inherit">Admin</Button>
                     </Link>
                 </Toolbar>
             </AppBar>
