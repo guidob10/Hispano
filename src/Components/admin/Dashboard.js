@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminLayout from '../../hoc/adminLayout';
+import AdminLayout from '../../hoc/AdminLayout';
 
 const Dashboard = () => {
     return (

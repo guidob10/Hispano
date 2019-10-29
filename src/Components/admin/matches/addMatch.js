@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AdminLayout from '../../../hoc/adminLayout';
+import AdminLayout from '../../../hoc/AdminLayout';
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";

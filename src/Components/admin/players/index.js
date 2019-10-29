@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import AdminLayout from '../../../hoc/adminLayout';
+import AdminLayout from '../../../hoc/AdminLayout';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
