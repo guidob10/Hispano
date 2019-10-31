@@ -16,6 +16,8 @@ import AddPlayer from './components/admin/players/addPlayer';
 import AddMatch from './components/admin/matches/addMatch';
 import EditMatch from './components/admin/matches/editMatch';
 import EditPlayer from './components/admin/players/editPlayer';
+import AdminTeams from './components/admin/teams';
+
 //import Hello from './components/admin/players/hellob';
 import Login from './components/login';
 import TheTeam from './components/theTeam';
@@ -31,7 +33,10 @@ import SecuredRoute from "./securityUtils/secureRoute";
 
 //            <PrivateRoute {...props} restricted={false} path="/admin_matches" exact component={AdminMatches}/>
       //      <PublicRoute {...props} restricted={false} path="/hello" exact component={Hello}/>                 
-
+ //     <PublicRoute {...props} restricted={false} path="/admin_players/editplayer/:id" exact component={EditPlayer}/>
+ //     <PublicRoute {...props} restricted={false} path="/admin_players" exact component={AdminPlayers}/> 
+ //     <PublicRoute {...props} restricted={false} path="/admin_players/addplayer" exact component={AddPlayer}/>                 
+ //     <PublicRoute {...props} restricted={false} path="/dashboard" exact component={Dashboard}/>
 
 const Routes = (props) => {
   return(
@@ -42,16 +47,18 @@ const Routes = (props) => {
             <SecuredRoute  exact path="/admin_matches/addmatch" component={AddMatch}/>                 
             <SecuredRoute  path="/admin_matches/editmatch/:id" exact component={EditMatch}/>
 
+            <SecuredRoute  path="/admin_players" exact component={AdminPlayers}/>
+            <SecuredRoute  path="/admin_players/addplayer" exact component={AddPlayer}/>               
+            <SecuredRoute  path="/admin_players/editplayer/:id" exact component={EditPlayer} />              
 
-            <PublicRoute {...props} restricted={false} path="/admin_players/editplayer/:id" exact component={EditPlayer}/>
-            <PublicRoute {...props} restricted={false} path="/admin_players" exact component={AdminPlayers}/> 
-            <PublicRoute {...props} restricted={false} path="/admin_players/addplayer" exact component={AddPlayer}/>                 
-            <PublicRoute {...props} restricted={false} path="/dashboard" exact component={Dashboard}/>
+            <SecuredRoute  path="/dashboard" exact component={Dashboard}/>     
+
+            <PublicRoute {...props} restricted={false} path="/admin_teams" component={AdminTeams} />            
             <PublicRoute {...props} restricted={false} path="/login" component={Login} />            
             <PublicRoute {...props} restricted={false} path="/" exact component={Home}/>
             <PublicRoute {...props} restricted={false} path="/the_matches" exact component={TheMatches}/>
             <PublicRoute {...props} restricted={false} path="/the_team" exact component={TheTeam}/>            
-            <PublicRoute {...props} restricted={false}  component={NotFound}/>                        
+            <PublicRoute {...props} restricted={false} component={NotFound}/>                        
         </Switch>
     </Layout>
   )
