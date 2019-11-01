@@ -1,6 +1,6 @@
 import axios from "axios";
 import { GET_ERRORS, GET_MATCH } from "./types";
-import { DELETE_MATCH, GET_TEAMS } from "./types";
+import { DELETE_MATCH, GET_TEAMS, DELETE_TEAM } from "./types";
 import baseUrl from '../../config/axiosURL';
  
 const baseUrlApi = baseUrl;
@@ -34,17 +34,17 @@ export const createMatch = (onematch, history) => async dispatch => {
     });
   }
 };
- 
-export const deleteMatch = id => async dispatch => {
+ */
+export const deleteTeam = id => async dispatch => {
   console.log("borroo"+id);
 
-  await axios.delete(baseUrlApi+`/matches/${id}`);
+  await axios.delete(baseUrlApi+`/teams/${id}`);
   dispatch({
-    type: DELETE_MATCH,
+    type: DELETE_TEAM,
     payload: id
   });
 };
- 
+ /*
 export const updateMatch = (id, onematch, history) => async dispatch => {
   try {
     const res = await axios.put(baseUrlApi+`/matches/${id}`, onematch);

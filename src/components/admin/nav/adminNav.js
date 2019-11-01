@@ -9,7 +9,7 @@ class AdminNav extends Component {
  
     logoutHandler = ()   => {
         this.props.logout();
-        window.location.href = "/";
+        window.location.href = "/hispano";
         console.log('Log out succesfull');
 
     }
@@ -37,7 +37,11 @@ class AdminNav extends Component {
             {
                 title: 'Add Players',
                 linkTo: '/admin_players/addplayer'
-            }
+            },
+            {
+                title: 'Teams',
+                linkTo: '/admin_teams'
+            }          
         ]
     
         const renderItems = () => (
