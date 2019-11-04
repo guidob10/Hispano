@@ -9,16 +9,16 @@ import { firebaseLooper } from '../ui/misc';
 import { Promise } from 'core-js';
 import { getPlayers } from"../actions/playerActions";
 import { connect } from "react-redux";
-import baseUrl from '../../config/axiosURL';
+import serverURL from '../../config/serverURL';
  
-const baseUrlApi = baseUrl;
+const baseUrlServerApi = serverURL;
 
 class TheTeam extends Component {
     
     constructor(props) {
         super(props);
        // this.onMove = this.onMove.bind(this);
-        this.testVarible= baseUrlApi; // no funca ver como hacer
+        this.testVarible= baseUrlServerApi+"/upload/"; // no funca ver como hacer
         //ver como poner tipo webapps/output ver como deployar en prod
     }    
     
