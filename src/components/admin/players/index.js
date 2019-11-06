@@ -58,10 +58,10 @@ class AdminPlayers extends Component {
                         <Table>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Fecha de Nacimiento</TableCell>
                                     <TableCell>Nombre</TableCell>
-                                    <TableCell>Valor</TableCell>
                                     <TableCell>Posicion</TableCell>
+                                    <TableCell>Numero</TableCell>                                   
+                                    <TableCell>Fecha de Nacimiento</TableCell>                                    
                                     <TableCell> </TableCell>   
                                     <TableCell> </TableCell>                                                                       
                                 </TableRow>
@@ -71,16 +71,16 @@ class AdminPlayers extends Component {
                                     players.map((player,i)=>(
                                         <TableRow key={i}>
                                             <TableCell>
-                                                {player.dayBirth}
-                                            </TableCell>
-                                            <TableCell>
                                                 {player.name}
                                             </TableCell>
                                             <TableCell>
-                                                {player.value}
+                                                {player.position}
                                             </TableCell>
                                             <TableCell>
-                                                {player.position}
+                                                {player.registrationNumber}
+                                            </TableCell>
+                                            <TableCell>
+                                                {player.dayBirth}
                                             </TableCell>                                            
                                             <TableCell>     
                                                 <Link to={`/admin_players/editplayer/${player.id}`}>

@@ -15,7 +15,7 @@ class AddPlayer extends Component {
     this.state = {
       name: '',
       position: '',
-      email: '',
+      registrationNumber: '',
       dayBirth: '',
       defaultImg: null,
       positions:[{label: "Base", value:1}, {label:"Alero", value:2},  {label:"Pivot", value:3}, {label:"DT", value:4}],
@@ -48,8 +48,8 @@ class AddPlayer extends Component {
 
   handleChangeCombo = selectedOption => {
     // this.setState( { selectedOption : selectedOption, teamLocal : selectedOption})
-    console.log("select"+selectedOption);
-       this.setState( {   position : selectedOption})
+    console.log("select"+selectedOption.label);
+       this.setState( {   position : selectedOption.label})
    };
 
   handleSubmit(event) {
@@ -58,7 +58,7 @@ class AddPlayer extends Component {
    const newPlayer = {
     name: this.state.name,
     position: this.state.position,
-    email: this.state.email,
+    registrationNumber: this.state.registrationNumber,
     defaultImg: this.state.defaultImg,
     dayBirth: this.state.dayBirth
    };
@@ -69,7 +69,7 @@ class AddPlayer extends Component {
 
 
   render() {
-    const {  positions, position, errors, defaultImg } = this.state;
+    const {  positions, position, registrationNumber, errors, defaultImg } = this.state;
     
     //const { uploading, images } = this.state
 
@@ -88,7 +88,7 @@ class AddPlayer extends Component {
            <form  onSubmit={this.handleSubmit}>
            <div className="form-group">
               <label>
-                 <div className="label_inputs">Nombre</div>     
+                 Nombre   
                  <input
                     type="text"
                     className="form-control form-control-lg"
@@ -102,7 +102,7 @@ class AddPlayer extends Component {
             </div>
             <div className="form-group"> 
               <label>
-                 <div className="label_inputs">Posicion</div> 
+                 Posicion
                  {/*
                  <input
                      type="text"
@@ -114,7 +114,7 @@ class AddPlayer extends Component {
                      required                                                         
                  />*/ }
                  <Select options={positions } 
-                         value={position} 
+                         value={position.label} 
                          onChange={this.handleChangeCombo} 
                          getOptionLabel={option => `${option.label}` }
                     
@@ -124,21 +124,21 @@ class AddPlayer extends Component {
             </div>
             <div className="form-group"> 
               <label>
-              <div className="label_inputs">Email</div> 
+              Numero De Camiseta
                  <input
-                     type="email"
+                     type="text"
                      className="form-control form-control-lg"
-                     placeholder="Email"
-                     name="email"
+                     placeholder="Numero"
+                     name="registrationNumber"
                      required
-                     value={this.state.email}   
+                     value={this.state.registrationNumber}   
                      onChange={this.handleChange}                                                         
                  /> 
                </label>
             </div>
             <div className="form-group"> 
               <label>
-                 <div className="label_inputs">Fecha de Nacimiento</div> 
+                 Fecha de Nacimiento
                  <input
                      type="date"
                      className="form-control form-control-lg"
@@ -152,7 +152,7 @@ class AddPlayer extends Component {
             </div>       
             <div className="form-group"> 
               <label>
-                 <div className="label_inputs">Foto</div> 
+                 Foto
                  <input
                      type="file"
                      id="InputFile"

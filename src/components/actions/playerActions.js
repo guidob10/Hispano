@@ -45,7 +45,7 @@ export const createPlayer = (player, history) => async dispatch => {
     form.append('defaultImg', player.defaultImg); 
     form.append('name', player.name);
     form.append('position', player.position);    
-    form.append('email', player.email); 
+    form.append('registrationNumber', player.registrationNumber); 
     form.append('dayBirth', player.dayBirth); 
 
     const res = await axios({
@@ -94,7 +94,7 @@ export const updatePlayer = (id, player, history) => async dispatch => {
      form.append('defaultImg', player.defaultImg); 
      form.append('name', player.name);
      form.append('position', player.position);    
-     form.append('email', player.email); 
+     form.append('registrationNumber', player.registrationNumber); 
      form.append('dayBirth', player.dayBirth);
      form.append('defaultImg',player.defaultImg) ;
  

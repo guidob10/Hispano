@@ -83,19 +83,25 @@ class EditMatch extends Component {
 
     render() {
         const { teamLocal, teamAway } = this.state;
-        const { teams } = this.props.team;      
+        const { teams } = this.props.team;     
+        
+        let pageTitle;
+        if(this.state.id) {
+            pageTitle = <h3>Editar Partido</h3>
+        } else {
+            pageTitle = <h3>Agregar Partido</h3>
+        }        
         return (
             <AdminLayout>
-                <div className="editmatch_dialog_wrapper">
-                    <h2>
-                        {this.state.formType}
-                    </h2>
+              <div className="container">
+                <div className="editplayers_dialog_wrapper">      
+                 {pageTitle}
                     <div>
                     <form onSubmit={this.onSubmit}>
-                        <h6>Fecha</h6>
                         <div className="form-group">
+                        <label>Fecha                         
                         <input
-                            type="text"
+                            type="date"
                             className="form-control form-control-lg "
                             placeholder="Fecha"
                             name="date"
@@ -103,20 +109,10 @@ class EditMatch extends Component {
                             onChange={this.onChange}
                             required 
                         />
-                        </div>
-                        <h6>Equipo Local</h6>
+                        </label>
+                        </div>                     
                         <div className="form-group">
-                          {/*
-                        <input
-                            type="text"
-                            className="form-control form-control-lg"
-                            placeholder="Equipo"
-                            name="teamLocal"
-                            value={this.state.teamLocal}
-                            onChange={this.onChange}  
-                            required                         
-                          />*/}
-                          <label>
+                          <label>Equipo Local
                              <Select options={ teams } 
                                     value={teamLocal} 
                                     onChange={this.handleChangeComboLocal} 
@@ -124,11 +120,9 @@ class EditMatch extends Component {
                                                     }
                               /> 
                           </label> 
-
                         </div>    
-                        <h6>Equipo Visita</h6>
                         <div className="form-group">
-                          <label>
+                          <label>Equipo Visita
                              <Select options={ teams } 
                                     value={teamAway} 
                                     onChange={this.handleChangeComboAway} 
@@ -136,9 +130,9 @@ class EditMatch extends Component {
                                                     }
                               /> 
                           </label>  
-                        </div>                                            
-                        <h6>Resultado Local</h6>
+                        </div>                                                                    
                         <div className="form-group">
+                        <label>Resultado Local 
                         <input
                             type="text"
                             className="form-control form-control-lg"
@@ -148,9 +142,11 @@ class EditMatch extends Component {
                             onChange={this.onChange}  
                             required                         
                         />
+                        </label>
                         </div>
-                        <h6>Resultado Visita</h6>
+   
                         <div className="form-group">
+                        <label>Resultado Visita    
                         <input
                             type="text"
                             className="form-control form-control-lg"
@@ -160,13 +156,13 @@ class EditMatch extends Component {
                             onChange={this.onChange}  
                             required                         
                         />
+                        </label>
                         </div> 
-
                         <button>Enviar</button>                        
                     </form>
                     </div>
                 </div>                    
-
+              </div>   
             </AdminLayout>
         );
     }

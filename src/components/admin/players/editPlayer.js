@@ -20,6 +20,7 @@ class EditPlayer extends Component {
       id: '',
       name: '',
       position: '',
+      registrationNumber: '',
       dayBirth: '',
       defaultImg: null,
     //  positions:[{label: "Base", value:1}, {label:"Alero", value:2},  {label:"Pivot", value:3}, {label:"DT", value:4}]
@@ -41,12 +42,13 @@ class EditPlayer extends Component {
     componentWillReceiveProps(nextProps) {
         console.log("getx"+nextProps.player);
 
-        const { id, name, position, dayBirth, defaultImg } = nextProps.player;
+        const { id, name, position, dayBirth, registrationNumber, defaultImg } = nextProps.player;
     
         this.setState({
           id,
           name,
           position,
+          registrationNumber,
           dayBirth,
           defaultImg,
         });
@@ -71,6 +73,7 @@ class EditPlayer extends Component {
           id: this.state.id,
           name: this.state.name,
           position: this.state.position,
+          registrationNumber: this.state.registrationNumber,         
           dayBirth: this.state.dayBirth,
   //ver si agregarimg
           defaultImg: this.state.defaultImg          
@@ -88,16 +91,29 @@ class EditPlayer extends Component {
     render() {
       const {  positions,position, errors, defaultImg } = this.state;
 
+        let pageTitle;
+        if(this.state.id) {
+            pageTitle = <h3>Editar Jugador</h3>
+        } else {
+            pageTitle = <h3>Agregar Jugador</h3>
+        }      
+
         return (
             <AdminLayout>
-                <div className="editmatch_dialog_wrapper">
-                    <h2>
-                        {this.state.formType}
-                    </h2>
-                    <div>
+            {/*      <!--   <div className="editmatch_dialog_wrapper">
+                        <h2>
+                            {this.state.formType}
+                        </h2>
+            <div> -->  */}
+
+                <div className="container">
+                  <div className="editplayers_dialog_wrapper">      
+                  {pageTitle}                      
                     <form onSubmit={this.onSubmit}>
-                        <h6>Nombre</h6>
-                        <div className="form-group">
+                    <div className="form-group">
+                        <label>
+                            Nombre
+ 
                         <input
                             type="text"
                             className="form-control form-control-lg "
@@ -107,20 +123,39 @@ class EditPlayer extends Component {
                             onChange={this.onChange}
                             required 
                         />
+                        </label>                           
                         </div>
-                        <h6>Posicion</h6>
+ 
                         <div className="form-group">
-                        <Select options={positions } 
-                          //value={positions[0]}  esto funciona, porque espera un array de objetos.
-                          value={{label: position, value:position}}
-                          onChange={this.handleChangeCombo} 
-                          getOptionLabel={option => `${option.label}` }
-                          getOptionValue={option => option.value}  
-                        //  defaultValue={{label: 'abcd', value: 'abcd'}}                                                                      
-                         />
+                        <label>
+                            Posicion                        
+                            <Select options={positions } 
+                              //value={positions[0]}  esto funciona, porque espera un array de objetos.
+                              value={{label: position, value:position}}
+                              onChange={this.handleChangeCombo} 
+                              getOptionLabel={option => `${option.label}` }
+                              getOptionValue={option => option.value}  
+                          //  defaultValue={{label: 'abcd', value: 'abcd'}}                                                                      
+                          />
+                        </label>                           
                         </div>
-                        <h6>Fecha de nacimiento</h6>
-                        <div className="form-group">
+                        <div className="form-group"> 
+                        <label>
+                          Numero De Camiseta 
+                            <input
+                                type="text"
+                                className="form-control form-control-lg"
+                                placeholder="Numero de Camiseta"
+                                name="registrationNumber"
+                                required
+                                value={this.state.registrationNumber}   
+                                onChange={this.onChange}                                                         
+                            /> 
+                        </label>
+                        </div>                        
+                        <div className="form-group"> 
+                        <label>
+                        Fecha de nacimiento
                         <input
                             type="date"
                             className="form-control form-control-lg"
@@ -129,19 +164,19 @@ class EditPlayer extends Component {
                             onChange={this.onChange}
                             required 
                         />
-
+                        </label>
                         </div>
                         <div className="form-group"> 
                           <label>
-                          <div className="label_inputs">Foto</div> 
+                          Foto
                           <input
                               type="file"
                               id="InputFile"
                               className="form-control form-control-lg"
                               placeholder="Archivo"
                               name="defaultImg"
-                              onChange={this.handleOnFileChange} accept='.jpg' 
-                              required                                                         
+                              onChange={this.handleOnFileChange} accept='.jpg'
+                              required                                                      
                           /> 
                           </label>
                         </div>                         
