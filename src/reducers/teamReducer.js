@@ -1,5 +1,5 @@
 //import { GET_PROJECTS, GET_PROJECT, DELETE_PROJECT, UPDATE_PROJECT } from "../actions/types";
-import { GET_TEAMS, GET_MATCH, DELETE_MATCH, UPDATE_MATCH } from "../components/actions/types";
+import { GET_TEAMS, GET_TEAM, DELETE_TEAM, UPDATE_TEAM } from "../components/actions/types";
 
 
 const initialState = {
@@ -26,27 +26,27 @@ export default function(state = initialState, action) {
         ...state,
         teams: action.payload
       };
-    /*
-    case GET_MATCH:
-            return {
+     
+      case GET_TEAM:
+        return {
         ...state,
-        onematch: action.payload
+        team: action.payload
       };
 
-    case DELETE_MATCH:
+    case DELETE_TEAM:
       return {
         ...state,
-            matches: state.matches.filter(
-              onematch => onematch.id !== action.payload
+              teams: state.teams.filter(
+              oneteam => oneteam.id !== action.payload
         )
       };
 
-     case UPDATE_MATCH:
+     case UPDATE_TEAM:
        return {
         ...state,
-        matches: action.payload
+        teams: action.payload
       };
-*/       
+    
 
     default:
       return state;

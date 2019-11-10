@@ -41,7 +41,11 @@ class AdminNav extends Component {
             {
                 title: 'Equipos',
                 linkTo: '/admin_teams'
-            }          
+            },
+            {
+                title: 'Agregar Equipo',
+                linkTo: '/admin_teams/addteam'
+            }                         
         ]
     
         const renderItems = () => (

@@ -70,6 +70,11 @@ class AdminTeams extends Component {
                                             <TableCell>
                                                 {team.stadium}
                                             </TableCell>
+                                            <TableCell>     
+                                                <Link to={`/admin_teams/editteam/${team.id}`}>
+                                                <button>Editar</button> 
+                                                </Link>
+                                            </TableCell>                                             
                                             <TableCell>
                                                 <button 
                                                    onClick={this.onDeleteClick.bind(

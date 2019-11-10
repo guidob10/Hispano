@@ -16,6 +16,8 @@ import AddPlayer from './components/admin/players/addPlayer';
 import AddMatch from './components/admin/matches/addMatch';
 import EditMatch from './components/admin/matches/editMatch';
 import EditPlayer from './components/admin/players/editPlayer';
+import AddTeam from './components/admin/teams/addTeam';
+import EditTeam from './components/admin/teams/editTeam';
 import AdminTeams from './components/admin/teams';
 
 //import Hello from './components/admin/players/hellob';
@@ -51,9 +53,12 @@ const Routes = (props) => {
             <SecuredRoute  path="/admin_players/addplayer" exact component={AddPlayer}/>               
             <SecuredRoute  path="/admin_players/editplayer/:id" exact component={EditPlayer} />              
 
+            <SecuredRoute  path="/admin_teams" exact component={AdminTeams}/>
+            <SecuredRoute  path="/admin_teams/addteam" exact component={AddTeam}/>               
+            <SecuredRoute  path="/admin_teams/editteam/:id" exact component={EditTeam} />  
+
             <SecuredRoute  path="/dashboard" exact component={Dashboard}/>     
 
-            <PublicRoute {...props} restricted={false} path="/admin_teams" component={AdminTeams} />            
             <PublicRoute {...props} restricted={false} path="/login" component={Login} />            
             <PublicRoute {...props} restricted={false} path="/" exact component={Home}/>
             <PublicRoute {...props} restricted={false} path="/the_matches" exact component={TheMatches}/>
