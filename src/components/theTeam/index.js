@@ -4,8 +4,6 @@ import PlayerCard from '../ui/playerCard';
 import Fade from 'react-reveal/Fade';
 
 import Stripes from '../../resources/images/stripes.png';
-// import { firebasePlayers, firebase } from '../../firebase';
-import { firebaseLooper } from '../ui/misc';
 import { Promise } from 'core-js';
 import { getPlayers } from"../actions/playerActions";
 import { connect } from "react-redux";
@@ -28,41 +26,11 @@ class TheTeam extends Component {
     componentDidMount(){
         this.props.getPlayers();
          
-        /*
-        firebasePlayers.once('value').then(snapshot =>{
-            const players = firebaseLooper(snapshot);
-            let promises = [];
-            
-            for(let key in players){
-                promises.push(
-                    new Promise((resolve,reject)=>{
-                        firebase.storage().ref('players')
-                        .child(players[key].image).getDownloadURL()
-                        .then( url => {
-                            players[key].url = url;
-                            resolve();
-                        })
-                    })
-                )
-            }
-
-            Promise.all(promises).then(()=>{
-                this.setState({
-                    loading: false,
-                    players
-                })
-            })
-
-
-
-        }) */
     }
 
     showplayersByCategory = (players,position) => (
-        //this.state.players ? 
             players ?
                 players.map((player,i)=>{
-            //this.state.players.map((player,i)=>{
                 console.log("asd");
                 return player.position === position ?
                     <Fade left delay={i*20} key={i}>
@@ -129,7 +97,6 @@ class TheTeam extends Component {
     }
 }
 
-//export default TheTeam;
 const mapStateToProps = state => ({
     player: state.player,
     errors: state.errors

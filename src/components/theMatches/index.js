@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress'
-
-import { firebaseMatches } from '../../firebase';
-import { firebaseLooper, reverseArray } from '../ui/misc';
-
 import LeagueTable from './table';
 import MatchesList from './matchesList';
 import { connect } from "react-redux";
@@ -21,18 +17,7 @@ class TheMatches extends Component {
 
     componentDidMount(){
         this.props.getMatches();
-      //   this.setState({matches : this.matches})
 
-        /*
-        firebaseMatches.once('value').then(snapshot=>{
-            const matches = firebaseLooper(snapshot);
-
-            this.setState({
-                loading: false,
-                matches: reverseArray(matches),
-                filterMatches: reverseArray(matches)
-            });
-        })*/
     }
 
     showPlayed = (played) => {
@@ -62,7 +47,6 @@ class TheMatches extends Component {
 
     render() {
         const state = this.state;
-   //     const { matches } = this.props.matches;
         const { matches } = this.props.match;
         return (
             <div className="the_matches_container">
@@ -127,7 +111,6 @@ class TheMatches extends Component {
     }
 }
 
-//export default TheMatches;
 const mapStateToProps = state => ({
     match: state.match,
     errors: state.errors
