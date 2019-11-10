@@ -7,10 +7,6 @@ import FormField from '../../ui/formFields';
 import { validate } from '../../ui/misc';
 import Select from 'react-select';
 
-
-//import { firebaseTeams , firebaseDB, firebaseMatches } from '../../../firebase';
-//import { firebaseLooper } from '../../ui/misc';
-
 class EditPlayer extends Component {
 
   constructor() {
@@ -23,7 +19,6 @@ class EditPlayer extends Component {
       registrationNumber: '',
       dayBirth: '',
       defaultImg: null,
-    //  positions:[{label: "Base", value:1}, {label:"Alero", value:2},  {label:"Pivot", value:3}, {label:"DT", value:4}]
       positions:[{value: "Base", label: "Base"}, {value: "Alero", label:"Alero"},  {value:"Pivot", label:"Pivot"}, {value: "DT", label:"DT"}]
     };
 
@@ -52,21 +47,20 @@ class EditPlayer extends Component {
           dayBirth,
           defaultImg,
         });
-      }    
+    }    
     
-      onChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
-      }
+    onChange(e) {
+      this.setState({ [e.target.name]: e.target.value });
+    }
 
-      handleOnFileChange = (event) => {
+    handleOnFileChange = (event) => {
         let defaultImg = event.target.files[0];
         this.setState({
           defaultImg : defaultImg
         })
-      //  console.log(event.target.files[0])
-      }         
+    }         
     
-      onSubmit(e) {
+    onSubmit(e) {
         e.preventDefault();
     
         const updatePlayer = {
@@ -75,18 +69,15 @@ class EditPlayer extends Component {
           position: this.state.position,
           registrationNumber: this.state.registrationNumber,         
           dayBirth: this.state.dayBirth,
-  //ver si agregarimg
           defaultImg: this.state.defaultImg          
         };
         const { id } =  this.state;
         this.props.updatePlayer(id,updatePlayer, this.props.history);
-      }
+    }
  
-      handleChangeCombo = selectedOption => {
-        // this.setState( { selectedOption : selectedOption, teamLocal : selectedOption})
-        console.log("select"+selectedOption.label);
-           this.setState( { position : selectedOption.label})
-       };
+    handleChangeCombo = selectedOption => {
+       this.setState( { position : selectedOption.label})
+    };
 
     render() {
       const {  positions,position, errors, defaultImg } = this.state;
@@ -100,11 +91,6 @@ class EditPlayer extends Component {
 
         return (
             <AdminLayout>
-            {/*      <!--   <div className="editmatch_dialog_wrapper">
-                        <h2>
-                            {this.state.formType}
-                        </h2>
-            <div> -->  */}
 
                 <div className="container">
                   <div className="editplayers_dialog_wrapper">      
@@ -130,12 +116,10 @@ class EditPlayer extends Component {
                         <label>
                             Posicion                        
                             <Select options={positions } 
-                              //value={positions[0]}  esto funciona, porque espera un array de objetos.
                               value={{label: position, value:position}}
                               onChange={this.handleChangeCombo} 
                               getOptionLabel={option => `${option.label}` }
                               getOptionValue={option => option.value}  
-                          //  defaultValue={{label: 'abcd', value: 'abcd'}}                                                                      
                           />
                         </label>                           
                         </div>
@@ -184,7 +168,6 @@ class EditPlayer extends Component {
                     </form>
                     </div>
                 </div>                    
-
             </AdminLayout>
         );
     }

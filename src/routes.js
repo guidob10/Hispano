@@ -1,13 +1,9 @@
 import React from 'react';
 import Layout from './hoc/Layout';
 import { Switch, Route }  from 'react-router-dom';
-
 import PrivateRoute from './components/authRoutes/privateRoutes';
 import PublicRoute from './components/authRoutes/publicRoutes';
-
 import Home from './components/home';
-//import SignIn from './components/signin/indexNovamas';
-
 import Dashboard from './components/admin/Dashboard';
 import AdminMatches from './components/admin/matches';
 import AdminPlayers from './components/admin/players';
@@ -19,26 +15,14 @@ import EditPlayer from './components/admin/players/editPlayer';
 import AddTeam from './components/admin/teams/addTeam';
 import EditTeam from './components/admin/teams/editTeam';
 import AdminTeams from './components/admin/teams';
-
-//import Hello from './components/admin/players/hellob';
 import Login from './components/login';
 import TheTeam from './components/theTeam';
 import TheMatches from './components/theMatches';
 import NotFound from './components/ui/not_found'
 import SecuredRoute from "./securityUtils/secureRoute";
 
+//   <PrivateRoute {...props} path="/dashboard" exact component={Dashboard}/>
 
-//             <PrivateRoute {...props} path="/dashboard" exact component={Dashboard}/>
-// <PublicRoute {...props} restricted={true} path="/sign_in" exact component={SignIn}/>
- //                   
-//           <PublicRoute {...props} restricted={false} path="/signin" exact component={SignIn}/>
-
-//            <PrivateRoute {...props} restricted={false} path="/admin_matches" exact component={AdminMatches}/>
-      //      <PublicRoute {...props} restricted={false} path="/hello" exact component={Hello}/>                 
- //     <PublicRoute {...props} restricted={false} path="/admin_players/editplayer/:id" exact component={EditPlayer}/>
- //     <PublicRoute {...props} restricted={false} path="/admin_players" exact component={AdminPlayers}/> 
- //     <PublicRoute {...props} restricted={false} path="/admin_players/addplayer" exact component={AddPlayer}/>                 
- //     <PublicRoute {...props} restricted={false} path="/dashboard" exact component={Dashboard}/>
 
 const Routes = (props) => {
   return(

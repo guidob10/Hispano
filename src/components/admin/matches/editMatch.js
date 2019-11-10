@@ -9,7 +9,6 @@ import Select from 'react-select';
 import { getTeams } from "../../actions/teamActions";
 
 
- 
 class EditMatch extends Component {
 
   constructor() {
@@ -36,8 +35,6 @@ class EditMatch extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log("getx"+nextProps.onematch);
-
         const { id, date, teamLocal, teamAway, resultLocal, resultAway} = nextProps.onematch;
     
         this.setState({
@@ -48,13 +45,13 @@ class EditMatch extends Component {
           resultLocal,
           resultAway
         });
-      }    
+    }    
     
-      onChange(e) {
+    onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
-      }
+    }
     
-      onSubmit(e) {
+    onSubmit(e) {
         e.preventDefault();
     
         const updateMatch = {
@@ -67,19 +64,15 @@ class EditMatch extends Component {
         };
         const { id } =  this.state;
         this.props.updateMatch(id,updateMatch, this.props.history);
-      }
+    }
  
-      handleChangeComboLocal = selectedOption => {
-
-        // this.setState( { selectedOption : selectedOption, teamLocal : selectedOption})
+    handleChangeComboLocal = selectedOption => {
            this.setState( {   teamLocal : selectedOption})
-     
-       };
+    };
       
-       handleChangeComboAway = selectedOption => {
-         // this.setState( { selectedOption : selectedOption, teamLocal : selectedOption})
+    handleChangeComboAway = selectedOption => {
             this.setState( {  teamAway : selectedOption})
-        };
+    };
 
     render() {
         const { teamLocal, teamAway } = this.state;

@@ -9,9 +9,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-//import { firebaseMatches } from '../../../firebase';
-//import { firebaseLooper, reverseArray } from '../../ui/misc';
 import { connect } from "react-redux";
 import { getMatches, deleteMatch } from"../../actions/matchActions";
 
@@ -24,7 +21,6 @@ class AdminMatches extends Component {
     }
 
     componentDidMount(){       
-        //   this.props.getPlayers();
            this.props.getMatches();
     }
 
@@ -33,7 +29,6 @@ class AdminMatches extends Component {
         if(window.confirm('Seguro que deseas borrar este registro?')){
             this.props.deleteMatch(id);
         }     
-        //this.props.deletePlayer(id);
     };    
 
     render() {
@@ -92,20 +87,13 @@ class AdminMatches extends Component {
                             </TableBody>
                         </Table>
                     </Paper>
-                    {/*
-                    <div className="admin_progress">
-                        { this.state.isloading ?
-                            <CircularProgress thickness={7} style={{color:'#98c5e9'}}/>
-                            :''
-                        }
-                    </div>   */ }
+
                 </div>
             </AdminLayout>
         );
     }
 }
 
-//export default AdminMatches;
 const mapStateToProps = state => ({
     match: state.match,
     errors: state.errors

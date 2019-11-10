@@ -9,9 +9,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-//import { firebaseMatches } from '../../../firebase';
-//import { firebaseLooper, reverseArray } from '../../ui/misc';
 import { connect } from "react-redux";
 import { getTeams, deleteTeam } from"../../actions/teamActions";
 
@@ -90,27 +87,20 @@ class AdminTeams extends Component {
                             </TableBody>
                         </Table>
                     </Paper>
-                    {/*
-                    <div className="admin_progress">
-                        { this.state.isloading ?
-                            <CircularProgress thickness={7} style={{color:'#98c5e9'}}/>
-                            :''
-                        }
-                    </div>   */ }
+    
                 </div>
             </AdminLayout>
         );
     }
 }
 
-//export default AdminMatches;
 const mapStateToProps = state => ({
     team: state.team,
     errors: state.errors
-  });
+});
   
   
-  export default connect(
+export default connect(
     mapStateToProps,
     { deleteTeam, getTeams }
-  )(AdminTeams);
+)(AdminTeams);

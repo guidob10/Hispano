@@ -6,7 +6,6 @@ import baseUrl from '../../config/axiosURL';
 const baseUrlApi = baseUrl;
 
 export const getTeams = () => async dispatch => {
- // clienteAxios.post('/players', jugador) 
   const res = await axios.get(baseUrlApi+"/teams");
   dispatch({
     type: GET_TEAMS,

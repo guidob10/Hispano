@@ -22,10 +22,6 @@ class AddPlayer extends Component {
       errors: {}
     };
 
-    //this.positions = [ "Base", "Alero", "Pivot", "DT" ]; 
-    //this.positions =[]
-
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOnFileChange = this.handleOnFileChange.bind(this);
@@ -37,20 +33,16 @@ class AddPlayer extends Component {
     this.setState({
       defaultImg : defaultImg
     })
-  //  console.log(event.target.files[0])
   }   
 
   handleChange(event) { 
     this.setState({ [event.target.name]: event.target.value  });
-    console.log(this.state)
   }
   
 
   handleChangeCombo = selectedOption => {
-    // this.setState( { selectedOption : selectedOption, teamLocal : selectedOption})
-    console.log("select"+selectedOption.label);
        this.setState( {   position : selectedOption.label})
-   };
+  };
 
   handleSubmit(event) {
     event.preventDefault();
@@ -62,17 +54,13 @@ class AddPlayer extends Component {
     defaultImg: this.state.defaultImg,
     dayBirth: this.state.dayBirth
    };
-   console.log("nuevo "+newPlayer);
    this.props.createPlayer(newPlayer, this.props.history);   
- 
   }
 
 
   render() {
     const {  positions, position, registrationNumber, errors, defaultImg } = this.state;
-    
-    //const { uploading, images } = this.state
-
+  
     let pageTitle;
     if(this.state.id) {
         pageTitle = <h3>Editar Jugador</h3>
@@ -103,16 +91,7 @@ class AddPlayer extends Component {
             <div className="form-group"> 
               <label>
                  Posicion
-                 {/*
-                 <input
-                     type="text"
-                     className="form-control form-control-lg"
-                     placeholder="Posicion"
-                     name="position"
-                     value={this.state.position}   
-                     onChange={this.handleChange} 
-                     required                                                         
-                 />*/ }
+
                  <Select options={positions } 
                          value={position.label} 
                          onChange={this.handleChangeCombo} 
@@ -165,11 +144,6 @@ class AddPlayer extends Component {
                </label>
             </div>                  
             <div> <br /> </div>
-                {/*  
-               <input
-                   type="submit"                
-                   className="btn btn-primary btn-block  mt-4"
-                />*/}
                 <button>Enviar</button>
             </form>
         </div>
@@ -179,7 +153,6 @@ class AddPlayer extends Component {
   }
 }
 
-// export default AddPlayer;
 const mapStateToProps = state => ({
   errors: state.errors
 });

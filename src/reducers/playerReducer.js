@@ -1,4 +1,3 @@
-//import { GET_PROJECTS, GET_PROJECT, DELETE_PROJECT, UPDATE_PROJECT } from "../actions/types";
 import { GET_PLAYERS, GET_PLAYER, DELETE_PLAYER, UPDATE_PLAYER } from "../components/actions/types";
 
 
@@ -46,17 +45,7 @@ export default function(state = initialState, action) {
         ...state,
         players: action.payload
       };
-/*
-       case types.UPDATE_DATA:
-          return Object.assign({}, state, {
-             data: state.data.filter(item => {
-                 return item.id !== action.id; //delete matched data
-             }).concat(action.payload); //concats new data
-          }); 
-      default:
-          return state;
-      }*/       
-//agregar gbc
+
     default:
       return state;
   }

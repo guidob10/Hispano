@@ -1,4 +1,3 @@
-//import { GET_PROJECTS, GET_PROJECT, DELETE_PROJECT, UPDATE_PROJECT } from "../actions/types";
 import { GET_TEAMS, GET_TEAM, DELETE_TEAM, UPDATE_TEAM } from "../components/actions/types";
 
 

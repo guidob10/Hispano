@@ -25,19 +25,7 @@ export const getPlayer = (id, history) => async dispatch => {
     payload: res.data
   });
 };
-/*
-export const createPlayer = (player, history) => async dispatch => {
-  try {
-    const res = await axios.post(baseUrlApi+"/players", player);
- 
-    history.push("/admin_players");  
-  } catch (err) {
-    dispatch({
-      type: GET_ERRORS,
-      payload: err.response.data
-    });
-  }
-};*/
+
 export const createPlayer = (player, history) => async dispatch => {
  // try {
     const form = new FormData();
@@ -73,24 +61,12 @@ export const deletePlayer = id => async dispatch => {
     payload: id
   });
 };
- /*
-export const updatePlayer = (id, player, history) => async dispatch => {
-  try {
-    const res = await axios.put(baseUrlApi+`/players/${id}`, player);
-    history.push("/admin_players");
-  } catch (err) {
-    dispatch({
-      type: GET_ERRORS,
-      payload: id
-    });
-  }
-};*/
+
 
 // agregar la foto
 export const updatePlayer = (id, player, history) => async dispatch => {
   // try {
      const form = new FormData();
-   //  formData.append(player.defaultImg, fs.createReadStream(player.defaultImg));
      form.append('defaultImg', player.defaultImg); 
      form.append('name', player.name);
      form.append('position', player.position);    
@@ -112,22 +88,3 @@ export const updatePlayer = (id, player, history) => async dispatch => {
        type: GET_ERRORS   ,
         payload: id } );
    })};
-
-/*
-export function crearNuevoJugadorAction(jugador){
-  return (dispatch) => {
-      dispatch(nuevoJugador())
-      console.log(jugador);
-
-      clienteAxios.post('/players', jugador)
-      .then(respuesta => {
-          console.log(respuesta);
-          dispatch (agregarJugadorExito(jugador))
-      })
-      .catch (error => {
-          console.log(error);
-          dispatch(agregarJugadorError(error));
-      })
-
-  }
-}*/

@@ -61,9 +61,7 @@ class AdminNav extends Component {
         return (
             <div>
                 {renderItems()}
-              {//   <ListItem button style={style} onClick={()=> this.logoutHandler.bind(this)}>
-              // onSubmit={this.handleSubmit}>
-              }
+
                 <ListItem button style={style} onClick={this.logoutHandler}>
                     Log out
                 </ListItem>
@@ -81,4 +79,3 @@ const mapStateToProps = state => ({
     { logout }
   )(AdminNav);
   
- // export default AdminNav;
