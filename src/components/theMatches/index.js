@@ -17,21 +17,42 @@ class TheMatches extends Component {
 
     componentDidMount(){
         this.props.getMatches();
-
+  
     }
 
-    showPlayed = (played) => {
-        const list = this.state.matches.filter((match)=>{
-            return match.final === played
+    componentWillReceiveProps(nextProps) {
+        // Any time props changes, update state.
+        if (nextProps.matches !== this.props.match.matches) {
+          this.setState({
+            matches: nextProps.match.matches,
+            filterMatches: nextProps.match.matches
+          });
+        }
+      }
+
+    showPlayed = (matches, played) => {
+        const list = matches.filter((match)=>{
+            return match.resultLocal > '0' 
         });
-        
         this.setState({
-            filterMatches: played === 'All' ? this.state.matches : list,
+            filterMatches: played === 'All' ?  matches : list,
             playedFilter: played,
             resultFilter: 'All'
         })
     }
 
+    showNoPlayed = (matches, played) => {
+            const list = matches.filter((match)=>{
+            return match.resultLocal === '0' 
+        });
+        console.log("asd"+matches)
+        this.setState({
+            filterMatches: played === 'All' ?  matches : list,
+            playedFilter: played,
+            resultFilter: 'All'
+        })
+    }    
+/*
     showResult = (result) => {
         const list = this.state.matches.filter((match)=>{
             return match.result === result
@@ -42,7 +63,7 @@ class TheMatches extends Component {
             playedFilter: 'All',
             resultFilter: result
         })
-    }
+    }*/
 
 
     render() {
@@ -59,20 +80,21 @@ class TheMatches extends Component {
                                 </div>
                                 <div className="cont">
                                     <div className={`option ${state.playedFilter === 'All'?'active':''}`}
-                                        onClick={()=> this.showPlayed('All')}
+                                        onClick={()=> this.showPlayed(matches,'All')}
                                     >
                                         Todos
                                     </div>
                                     <div className={`option ${state.playedFilter === 'Yes'?'active':''}`}
-                                        onClick={()=> this.showPlayed('Yes')}>
+                                        onClick={()=> this.showPlayed(matches,'Yes')}>
                                         Jugado
                                     </div>
                                     <div className={`option ${state.playedFilter === 'No'?'active':''}`}
-                                        onClick={()=> this.showPlayed('No')}>
+                                        onClick={()=> this.showNoPlayed(matches,'No')}>
                                         No jugado
                                     </div>
                                 </div>
                             </div>
+                            {/*  
                             <div className="match_filters_box">
                                 <div className="tag">
                                     Resultado
@@ -91,16 +113,11 @@ class TheMatches extends Component {
                                         onClick={()=> this.showResult('L')}>
                                         D
                                     </div>
-                                    {/*
-                                    <div className={`option ${state.resultFilter === 'D'?'active':''}`}
-                                        onClick={()=> this.showResult('D')}>
-                                        D
-                                    </div>*/}
+ 
                                 </div>
-                            </div>
+                            </div>*/}
                         </div>
-                        {/* <MatchesList matches={state.filterMatches}/>*/}
-                        <MatchesList matches={matches}/>
+                         <MatchesList matches={state.filterMatches}/>
                     </div>
                     <div className="right">
                         <LeagueTable/>
