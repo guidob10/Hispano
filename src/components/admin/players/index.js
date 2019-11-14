@@ -9,9 +9,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-//import { firebaseMatches } from '../../../firebase';
-//import { firebaseLooper, reverseArray } from '../../ui/misc';
 import { connect } from "react-redux";
 import { deletePlayer} from "../../actions/playerActions";
 import { getPlayers } from"../../actions/playerActions";
@@ -24,27 +21,13 @@ class AdminPlayers extends Component {
     }
     
     componentDidMount(){       
-     //   this.props.getPlayers();
         this.props.getPlayers();
-
-/*
-        fetch('http://localhost:8081/players')
-        .then((response) => {
-          return response.json()
-        })
-        .then((players) => {
-          this.setState({ players: players })
-          console.log(this.state.players);
-          console.log(this.state.player);
-        })*/
     }
 
     onDeleteClick = id => {
-        console.log("borro" + id);
         if(window.confirm('Seguro que deseas borrar este registro?')){
             this.props.deletePlayer(id);
         }     
-        //this.props.deletePlayer(id);
     };    
 
     render() {
@@ -58,10 +41,10 @@ class AdminPlayers extends Component {
                         <Table>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Fecha de Nacimiento</TableCell>
                                     <TableCell>Nombre</TableCell>
-                                    <TableCell>Valor</TableCell>
                                     <TableCell>Posicion</TableCell>
+                                    <TableCell>Numero</TableCell>                                   
+                                    <TableCell>Fecha de Nacimiento</TableCell>                                    
                                     <TableCell> </TableCell>   
                                     <TableCell> </TableCell>                                                                       
                                 </TableRow>
@@ -71,16 +54,16 @@ class AdminPlayers extends Component {
                                     players.map((player,i)=>(
                                         <TableRow key={i}>
                                             <TableCell>
-                                                {player.dayBirth}
-                                            </TableCell>
-                                            <TableCell>
                                                 {player.name}
                                             </TableCell>
                                             <TableCell>
-                                                {player.value}
+                                                {player.position}
                                             </TableCell>
                                             <TableCell>
-                                                {player.position}
+                                                {player.registrationNumber}
+                                            </TableCell>
+                                            <TableCell>
+                                                {player.dayBirth}
                                             </TableCell>                                            
                                             <TableCell>     
                                                 <Link to={`/admin_players/editplayer/${player.id}`}>
@@ -110,19 +93,14 @@ class AdminPlayers extends Component {
     }
 }
 
-//export default AdminPlayers;
-/*
+
 const mapStateToProps = state => ({
-    errors: state.errors
-  });
-*/
-  const mapStateToProps = state => ({
     player: state.player,
     errors: state.errors
-  });
+});
   
   
-  export default connect(
+export default connect(
     mapStateToProps,
     { deletePlayer, getPlayers }
-  )(AdminPlayers);
+ )(AdminPlayers);

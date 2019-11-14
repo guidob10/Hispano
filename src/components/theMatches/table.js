@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-//import { firebaseDB } from '../../firebase';
-//import { firebaseLooper } from '../ui/misc';
+
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -25,15 +24,7 @@ class LeagueTable extends Component {
     }
 
     componentDidMount(){
-        /*
-        firebaseDB.ref('positions').once('value').then((snapshot) => {
-            const positions = firebaseLooper(snapshot);
 
-            this.setState({
-                positions: positions
-            })
-        })
-        */
     }
 
 /*

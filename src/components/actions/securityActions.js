@@ -23,7 +23,6 @@ export const createNewUser = (newUser, history) => async dispatch => {
   }
 };
 
-//export const asd = () => {console.log("fff")};
 export const login = LoginRequest => async dispatch => {
   console.log("llegue3a");
   try {

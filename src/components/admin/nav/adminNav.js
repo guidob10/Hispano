@@ -23,25 +23,29 @@ class AdminNav extends Component {
 
         const links = [
             {
-                title: 'Matches',
+                title: 'Partidos',
                 linkTo: '/admin_matches'
             },
             {
-                title: 'Add Match',
+                title: 'Agregar Partido',
                 linkTo: '/admin_matches/addmatch'
             },
             {
-                title: 'Players',
+                title: 'Jugadores',
                 linkTo: '/admin_players'
             },
             {
-                title: 'Add Players',
+                title: 'Agregar Jugador',
                 linkTo: '/admin_players/addplayer'
             },
             {
-                title: 'Teams',
+                title: 'Equipos',
                 linkTo: '/admin_teams'
-            }          
+            },
+            {
+                title: 'Agregar Equipo',
+                linkTo: '/admin_teams/addteam'
+            }                         
         ]
     
         const renderItems = () => (
@@ -57,9 +61,7 @@ class AdminNav extends Component {
         return (
             <div>
                 {renderItems()}
-              {//   <ListItem button style={style} onClick={()=> this.logoutHandler.bind(this)}>
-              // onSubmit={this.handleSubmit}>
-              }
+
                 <ListItem button style={style} onClick={this.logoutHandler}>
                     Log out
                 </ListItem>
@@ -77,4 +79,3 @@ const mapStateToProps = state => ({
     { logout }
   )(AdminNav);
   
- // export default AdminNav;

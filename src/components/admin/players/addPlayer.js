@@ -15,16 +15,12 @@ class AddPlayer extends Component {
     this.state = {
       name: '',
       position: '',
-      email: '',
+      registrationNumber: '',
       dayBirth: '',
       defaultImg: null,
       positions:[{label: "Base", value:1}, {label:"Alero", value:2},  {label:"Pivot", value:3}, {label:"DT", value:4}],
       errors: {}
     };
-
-    //this.positions = [ "Base", "Alero", "Pivot", "DT" ]; 
-    //this.positions =[]
-
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,20 +33,16 @@ class AddPlayer extends Component {
     this.setState({
       defaultImg : defaultImg
     })
-  //  console.log(event.target.files[0])
   }   
 
   handleChange(event) { 
     this.setState({ [event.target.name]: event.target.value  });
-    console.log(this.state)
   }
   
 
   handleChangeCombo = selectedOption => {
-    // this.setState( { selectedOption : selectedOption, teamLocal : selectedOption})
-    console.log("select"+selectedOption);
-       this.setState( {   position : selectedOption})
-   };
+       this.setState( {   position : selectedOption.label})
+  };
 
   handleSubmit(event) {
     event.preventDefault();
@@ -58,21 +50,17 @@ class AddPlayer extends Component {
    const newPlayer = {
     name: this.state.name,
     position: this.state.position,
-    email: this.state.email,
+    registrationNumber: this.state.registrationNumber,
     defaultImg: this.state.defaultImg,
     dayBirth: this.state.dayBirth
    };
-   console.log("nuevo "+newPlayer);
    this.props.createPlayer(newPlayer, this.props.history);   
- 
   }
 
 
   render() {
-    const {  positions, position, errors, defaultImg } = this.state;
-    
-    //const { uploading, images } = this.state
-
+    const {  positions, position, registrationNumber, errors, defaultImg } = this.state;
+  
     let pageTitle;
     if(this.state.id) {
         pageTitle = <h3>Editar Jugador</h3>
@@ -88,7 +76,7 @@ class AddPlayer extends Component {
            <form  onSubmit={this.handleSubmit}>
            <div className="form-group">
               <label>
-                 <div className="label_inputs">Nombre</div>     
+                 Nombre   
                  <input
                     type="text"
                     className="form-control form-control-lg"
@@ -102,19 +90,10 @@ class AddPlayer extends Component {
             </div>
             <div className="form-group"> 
               <label>
-                 <div className="label_inputs">Posicion</div> 
-                 {/*
-                 <input
-                     type="text"
-                     className="form-control form-control-lg"
-                     placeholder="Posicion"
-                     name="position"
-                     value={this.state.position}   
-                     onChange={this.handleChange} 
-                     required                                                         
-                 />*/ }
+                 Posicion
+
                  <Select options={positions } 
-                         value={position} 
+                         value={position.label} 
                          onChange={this.handleChangeCombo} 
                          getOptionLabel={option => `${option.label}` }
                     
@@ -124,21 +103,21 @@ class AddPlayer extends Component {
             </div>
             <div className="form-group"> 
               <label>
-              <div className="label_inputs">Email</div> 
+              Numero De Camiseta
                  <input
-                     type="email"
+                     type="text"
                      className="form-control form-control-lg"
-                     placeholder="Email"
-                     name="email"
+                     placeholder="Numero"
+                     name="registrationNumber"
                      required
-                     value={this.state.email}   
+                     value={this.state.registrationNumber}   
                      onChange={this.handleChange}                                                         
                  /> 
                </label>
             </div>
             <div className="form-group"> 
               <label>
-                 <div className="label_inputs">Fecha de Nacimiento</div> 
+                 Fecha de Nacimiento
                  <input
                      type="date"
                      className="form-control form-control-lg"
@@ -152,7 +131,7 @@ class AddPlayer extends Component {
             </div>       
             <div className="form-group"> 
               <label>
-                 <div className="label_inputs">Foto</div> 
+                 Foto
                  <input
                      type="file"
                      id="InputFile"
@@ -165,11 +144,6 @@ class AddPlayer extends Component {
                </label>
             </div>                  
             <div> <br /> </div>
-                {/*  
-               <input
-                   type="submit"                
-                   className="btn btn-primary btn-block  mt-4"
-                />*/}
                 <button>Enviar</button>
             </form>
         </div>
@@ -179,7 +153,6 @@ class AddPlayer extends Component {
   }
 }
 
-// export default AddPlayer;
 const mapStateToProps = state => ({
   errors: state.errors
 });

@@ -6,7 +6,6 @@ import baseUrl from '../../config/axiosURL';
 const baseUrlApi = baseUrl;
 
 export const getMatches = () => async dispatch => {
- // clienteAxios.post('/players', jugador) 
   const res = await axios.get(baseUrlApi+"/matches");
   dispatch({
     type: GET_MATCHES,
@@ -57,22 +56,3 @@ export const updateMatch = (id, onematch, history) => async dispatch => {
     });
   }
 };
-
-/*
-export function crearNuevoJugadorAction(jugador){
-  return (dispatch) => {
-      dispatch(nuevoJugador())
-      console.log(jugador);
-
-      clienteAxios.post('/players', jugador)
-      .then(respuesta => {
-          console.log(respuesta);
-          dispatch (agregarJugadorExito(jugador))
-      })
-      .catch (error => {
-          console.log(error);
-          dispatch(agregarJugadorError(error));
-      })
-
-  }
-}*/

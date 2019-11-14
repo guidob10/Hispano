@@ -1,4 +1,3 @@
-//import { GET_PROJECTS, GET_PROJECT, DELETE_PROJECT, UPDATE_PROJECT } from "../actions/types";
 import { GET_MATCHES, GET_MATCH, DELETE_MATCH, UPDATE_MATCH } from "../components/actions/types";
 
 
@@ -46,17 +45,7 @@ export default function(state = initialState, action) {
         ...state,
         matches: action.payload
       };
-/*
-       case types.UPDATE_DATA:
-          return Object.assign({}, state, {
-             data: state.data.filter(item => {
-                 return item.id !== action.id; //delete matched data
-             }).concat(action.payload); //concats new data
-          }); 
-      default:
-          return state;
-      }*/       
-//agregar gbc
+
     default:
       return state;
   }
