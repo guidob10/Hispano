@@ -62,7 +62,7 @@ export const deletePlayer = id => async dispatch => {
   });
 };
 
-
+/*
 // agregar la foto
 export const updatePlayer = (id, player, history) => async dispatch => {
   // try {
@@ -88,3 +88,16 @@ export const updatePlayer = (id, player, history) => async dispatch => {
        type: GET_ERRORS   ,
         payload: id } );
    })};
+   */
+
+  export const updatePlayer = (id, player, history) => async dispatch => {
+    try {
+      const res = await axios.put(baseUrlApi+`/players/${id}`, player);
+      history.push("/admin_players");
+    } catch (err) {
+      dispatch({
+        type: GET_ERRORS,
+        payload: id
+      });
+    }
+  };   

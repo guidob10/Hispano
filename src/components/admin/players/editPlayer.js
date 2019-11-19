@@ -18,13 +18,11 @@ class EditPlayer extends Component {
       position: '',
       registrationNumber: '',
       dayBirth: '',
-      defaultImg: null,
       positions:[{value: "Base", label: "Base"}, {value: "Alero", label:"Alero"},  {value:"Pivot", label:"Pivot"}, {value: "DT", label:"DT"}]
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.handleOnFileChange = this.handleOnFileChange.bind(this);
     this.handleChangeCombo = this.handleChangeCombo.bind(this);
 
     }
@@ -45,7 +43,6 @@ class EditPlayer extends Component {
           position,
           registrationNumber,
           dayBirth,
-          defaultImg,
         });
     }    
     
@@ -68,8 +65,7 @@ class EditPlayer extends Component {
           name: this.state.name,
           position: this.state.position,
           registrationNumber: this.state.registrationNumber,         
-          dayBirth: this.state.dayBirth,
-          defaultImg: this.state.defaultImg          
+          dayBirth: this.state.dayBirth       
         };
         const { id } =  this.state;
         this.props.updatePlayer(id,updatePlayer, this.props.history);
@@ -149,20 +145,6 @@ class EditPlayer extends Component {
                             required 
                         />
                         </label>
-                        </div>
-                        <div className="form-group"> 
-                          <label>
-                          Foto
-                          <input
-                              type="file"
-                              id="InputFile"
-                              className="form-control form-control-lg"
-                              placeholder="Archivo"
-                              name="defaultImg"
-                              onChange={this.handleOnFileChange} accept='.jpg'
-                              required                                                      
-                          /> 
-                          </label>
                         </div>                         
                         <button>Enviar</button>                        
                     </form>
