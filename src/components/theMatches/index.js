@@ -16,8 +16,9 @@ class TheMatches extends Component {
     }
 
     componentDidMount(){
-        this.props.getMatches();
-  
+     //   this.props.getMatches();
+        this.props.getMatches(0,10);
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -25,13 +26,26 @@ class TheMatches extends Component {
         if (nextProps.matches !== this.props.match.matches) {
           this.setState({
             matches: nextProps.match.matches,
-            filterMatches: nextProps.match.matches
+            filterMatches: nextProps.match.matches.content
           });
         }
       }
 
+    showAll = (matches, played) => {
+        const list = matches.content.filter((match)=>{
+            return match
+        });
+
+        this.setState({
+            filterMatches: list,
+            matches : list,
+            playedFilter: played,
+            resultFilter: 'All'
+        })
+    }
+
     showPlayed = (matches, played) => {
-        const list = matches.filter((match)=>{
+        const list = matches.content.filter((match)=>{
             return match.resultLocal > '0' 
         });
         this.setState({
@@ -42,10 +56,11 @@ class TheMatches extends Component {
     }
 
     showNoPlayed = (matches, played) => {
-            const list = matches.filter((match)=>{
+            const list = matches.content.filter((match)=>{
             return match.resultLocal === '0' 
         });
         console.log("asd"+matches)
+        console.log(matches)
         this.setState({
             filterMatches: played === 'All' ?  matches : list,
             playedFilter: played,
@@ -80,7 +95,7 @@ class TheMatches extends Component {
                                 </div>
                                 <div className="cont">
                                     <div className={`option ${state.playedFilter === 'All'?'active':''}`}
-                                        onClick={()=> this.showPlayed(matches,'All')}
+                                        onClick={()=> this.showAll(matches,'All')}
                                     >
                                         Todos
                                     </div>
