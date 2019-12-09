@@ -5,11 +5,13 @@ import baseUrl from '../../config/axiosURL';
  
 const baseUrlApi = baseUrl;
 
-export const getMatches = () => async dispatch => {
-  const res = await axios.get(baseUrlApi+"/matches");
+export const getMatches = (activePage,totalElements) => async dispatch => {
+ // const res = await axios.get(baseUrlApi+"/matches");
+ const res = await axios.get(baseUrlApi+`/matches?page=${activePage}&size=${totalElements}`);
+
   dispatch({
     type: GET_MATCHES,
-    payload: res.data
+    payload: res.data 
   });
 };
  

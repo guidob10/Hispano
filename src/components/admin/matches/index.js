@@ -8,20 +8,28 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from "react-redux";
 import { getMatches, deleteMatch } from"../../actions/matchActions";
+import Pagination from "react-js-pagination";
 
 
 class AdminMatches extends Component {
 
     state = {
         isloading: true,
-        matches:[]
+        matches:[],
+        totalPages: 0,
+        totalElements: 5, 
+        activePage: 0  
     }
 
     componentDidMount(){       
-           this.props.getMatches();
+        if (this.activePage == null){
+            this.activePage = 0;
+            this.totalElements = 5;
+        }    
+        console.log(`fff ${this.activePage}`);
+        this.props.getMatches(this.activePage,this.totalElements);
     }
 
     onDeleteClick = id => {
@@ -29,14 +37,29 @@ class AdminMatches extends Component {
         if(window.confirm('Seguro que deseas borrar este registro?')){
             this.props.deleteMatch(id);
         }     
-    };    
+    };   
+
+    handlePageChange(activePageNumber) {
+        console.log(`active page is ${activePageNumber-1}`);
+        this.setState({activePage: activePageNumber-1});  
+        this.props.getMatches(activePageNumber-1,this.totalElements);              
+    };        
 
     render() {
 
-        const { matches } = this.props.match;
-        
+    const { matches } = this.props.match;
+    this.matches = this.props.match.matches;
+    // el estado original de matches es un array vacio, entra la primera vez, despues se pisa y no da 0 (da undefined)
+    if (matches.length === 0) {
         return (
-            <AdminLayout>
+            <div>No Data</div>
+        )
+    }
+    if (1  > 0  ) { 
+        console.log( matches );
+        return (
+        
+            <AdminLayout>  
                 <div>
                     <Paper>
                         <Table>
@@ -51,8 +74,8 @@ class AdminMatches extends Component {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                { matches ?
-                                    matches.map((match,i)=>(
+                                { this.matches ?
+                                    this.matches.content.map((match,i)=>(
                                         <TableRow key={i}>
                                             <TableCell>
                                                 {match.date}
@@ -86,12 +109,26 @@ class AdminMatches extends Component {
                                 }
                             </TableBody>
                         </Table>
-                    </Paper>
-
-                </div>
-            </AdminLayout>
-        );
-    }
+                    </Paper>  
+                    </div> 
+                <div>  
+                <Pagination 
+                    activePage={this.state.activePage}
+                    // totalItemsCount = cantidad de partidos que hay 
+                    totalItemsCount={100}                       
+                    // itemsCountPerPage = Cantidad que muestro por pagina.
+                    itemsCountPerPage={5}      
+                    onChange={this.handlePageChange.bind(this)}                        
+                />  
+                               
+                </div>     
+           
+            </AdminLayout> 
+              
+        ); 
+    }else 
+        return <div/>
+    }  
 }
 
 const mapStateToProps = state => ({
