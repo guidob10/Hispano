@@ -8,6 +8,8 @@ import Dashboard from './components/admin/Dashboard';
 import AdminMatches from './components/admin/matches';
 import AdminPlayers from './components/admin/players';
 import AddEditPlayers from './components/admin/players/editPlayer';
+import AdminNews from './components/admin/news';
+import AddNew from './components/admin/news/addNew';
 import AddPlayer from './components/admin/players/addPlayer';
 import AddMatch from './components/admin/matches/addMatch';
 import EditMatch from './components/admin/matches/editMatch';
@@ -18,6 +20,8 @@ import AdminTeams from './components/admin/teams';
 import Login from './components/login';
 import TheTeam from './components/theTeam';
 import TheMatches from './components/theMatches';
+import TheShop from './components/theShop';
+import TheNews from './components/theNews';
 import NotFound from './components/ui/not_found'
 import SecuredRoute from "./securityUtils/secureRoute";
 
@@ -41,12 +45,17 @@ const Routes = (props) => {
             <SecuredRoute  path="/admin_teams/addteam" exact component={AddTeam}/>               
             <SecuredRoute  path="/admin_teams/editteam/:id" exact component={EditTeam} />  
 
+            <SecuredRoute  path="/admin_news/addnew" exact component={AddNew}/>                
+            <SecuredRoute  path="/admin_news" exact component={AdminNews}/>
+
             <SecuredRoute  path="/dashboard" exact component={Dashboard}/>     
 
             <PublicRoute {...props} restricted={false} path="/login" component={Login} />            
             <PublicRoute {...props} restricted={false} path="/" exact component={Home}/>
             <PublicRoute {...props} restricted={false} path="/the_matches" exact component={TheMatches}/>
             <PublicRoute {...props} restricted={false} path="/the_team" exact component={TheTeam}/>            
+            <PublicRoute {...props} restricted={false} path="/the_shop" exact component={TheShop}/>    
+            <PublicRoute {...props} restricted={false} path="/the_news" exact component={TheNews}/>                        
             <PublicRoute {...props} restricted={false} component={NotFound}/>                        
         </Switch>
     </Layout>

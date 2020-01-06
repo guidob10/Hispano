@@ -549,6 +549,14 @@ footer .footer_discl {
     padding: 60px 0px;
 }
 
+/*=============================
+         THE SHOP
+===============================*/
+
+.the_shop_container {
+    margin-top: 296px;
+    margin-bottom: 296px;
+}
 
 
 
@@ -710,3 +718,21 @@ footer .footer_discl {
     margin-left: -1px;
 } 
  
+/*=============================
+            NEWS
+===============================*/
+
+.infiniteNew {
+    height: 250px;
+    overflow:auto; 
+    border: 3px solid #98c6e9;
+    padding: 6px 12px;
+    margin-top: 25px;
+}
+
+.noticias {
+    list-style-type: none;
+
+
+}
+
