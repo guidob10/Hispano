@@ -15,3 +15,7 @@ export const GET_TEAM = "GET_TEAM";
 export const GET_TEAMS = "GET_TEAMS";
 export const DELETE_TEAM = "DELETE_TEAM";
 export const UPDATE_TEAM = "UPDATE_TEAM";
+
+export const GET_NEW = "GET_NEW";
+export const GET_NEWS = "GET_NEWS";
+export const DELETE_NEW = "DELETE_NEW";

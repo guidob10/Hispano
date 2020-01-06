@@ -45,7 +45,15 @@ class AdminNav extends Component {
             {
                 title: 'Agregar Equipo',
                 linkTo: '/admin_teams/addteam'
-            }                         
+            } , 
+            {
+                title: 'Noticias',
+                linkTo: '/admin_news' 
+            },
+            {
+                title: 'Agregar Noticia',
+                linkTo: '/admin_news/addnew'
+            }                                     
         ]
     
         const renderItems = () => (

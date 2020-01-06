@@ -55,7 +55,7 @@ class AdminMatches extends Component {
             <div>No Data</div>
         )
     }
-    if (1  > 0  ) { 
+     
         console.log( matches );
         return (
         
@@ -126,8 +126,7 @@ class AdminMatches extends Component {
             </AdminLayout> 
               
         ); 
-    }else 
-        return <div/>
+  
     }  
 }
 
