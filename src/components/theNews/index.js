@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Stripes from '../../resources/images/stripes.png';
 
 import Noticia from './noticia';
+import baseUrl from '../../config/axiosURL';
  
+const baseUrlApi = baseUrl; 
 
 class TheNews extends Component {
 
@@ -40,8 +42,7 @@ class TheNews extends Component {
 
     loadNoticias = () => {
       const { per, page, noticias } = this.state;
-    
-      fetch(`http://localhost:8081/news?page=${page}&size=${per}`)
+       fetch(baseUrlApi+`/news?page=${page}&size=${per}`)
         .then((response) => {
           return response.json()
         })
