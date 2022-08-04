@@ -1,14 +1,20 @@
 # Hispano
+ 
+_App en React_
+ 
+_Este sitio esta realizado en REACT, utiliza AXIOS para consumir una API realizada con el mismo fin, en Java._
 
-[ ] App en React 
+_La aplicación utiliza REDUX para manejar el estado de los componentes._
 
-Este sitio esta realizado en REACT, utiliza AXIOS para consumir una API realizada con el mismo fin, en Java.
+### Funciones ###
 
-Ambos proyectos se encuentran deployados sobre una instancia Ubuntu en AWS.
+* Frontend y backoffice para sitio web del club.
+* Administrar Partidos, Noticias, Jugadores, Fixture, etc
 
-La aplicación utiliza REDUX para manejar el estado de los componentes que lo necesiten.
+### Requerimientos ###
 
-![alt text](http://dolarhoyinfo.com/pics/index.png)
-![alt text](http://dolarhoyinfo.com/pics/indexx.png)
-![alt text](http://dolarhoyinfo.com/pics/index3.png)
-![alt text](http://dolarhoyinfo.com/pics/indo.jpg)
+* JS
+  
+### Documentacion ###  
+
+* Ver documento FAQ - Configuracion Proyecto.docx
