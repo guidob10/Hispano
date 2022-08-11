@@ -1,7 +1,5 @@
 # Hispano
- 
-_App en React_
- 
+  
 _Este sitio esta realizado en REACT, utiliza AXIOS para consumir una API realizada con el mismo fin, en Java._
 
 _La aplicación utiliza REDUX para manejar el estado de los componentes._
